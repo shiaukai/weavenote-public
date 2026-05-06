@@ -1,60 +1,30 @@
-# WeaveNote Privacy Policy
+# WeaveNote
 
-**Last updated: 2026-04-28**
+A minimal voice-note app for Android: hit record, get a clean transcript, optionally let an LLM tidy it up. Published by **easierlife** (Taiwan).
 
-WeaveNote ("**we**", "**the app**") is published by **easierlife** (個人品牌, Taiwan; <shiaukai@gmail.com>). This page explains what data the app handles, where it goes, and what choices you have. We try to keep it short and concrete because the app is intentionally minimal in what it collects.
+## What it does
 
-## 1. Data the app handles
+- **Record voice notes** in the background — the OS won't kill recording when your screen is off.
+- **Transcribe** with the provider you choose:
+  - **Local Whisper** (on-device, fully offline after the model downloads once).
+  - **Cloud STT** — OpenAI Whisper, Google Gemini, or AWS Bedrock Nova, using your own API key.
+- **AI 整理** (optional post-processing) — send the transcript to OpenAI / Gemini / Claude / Bedrock to clean it up, summarise, or reformat. Again, your own API key.
+- **Webhooks** — POST the audio and/or transcript to any URL you configure (per-segment or when the note is finalised).
+- **Vocabulary groups** — feed domain-specific terms to the STT provider so names and jargon come out right.
 
-| Type | Where it lives |
-|------|---------------|
-| **Audio recordings (.wav)** of your notes | On your device, in the app's private storage (`/data/data/com.easierlife.weavenote/`) |
-| **Transcripts** generated from those recordings | On your device, in the same private storage |
-| **Settings** (provider preferences, vocabulary groups, webhook URLs) | On your device |
-| **API keys** for OpenAI / Gemini / Claude / AWS Bedrock | On your device, in **Android Keystore / iOS Keychain** (encrypted by the OS) |
+## What it doesn't do
 
-**The app itself does not have a server.** We do not run any backend that receives, stores, or analyses your recordings or transcripts.
+- **No backend.** The app has no server. Recordings, transcripts, settings, and API keys all live on your device.
+- **No analytics SDK.** No Firebase Analytics, no Crashlytics, no Sentry.
+- **No account.** No sign-up, no login.
 
-## 2. What gets sent off your device, and to whom
+The app shows banner ads via Google AdMob to keep it free. See the privacy policy for details.
 
-WeaveNote only sends data to services **you yourself configure**:
+## Get it
 
-1. **The cloud STT provider you choose.** If you select OpenAI Whisper, Gemini, or AWS Bedrock Nova, your recording (or a chunk of it) is sent over HTTPS to that provider's API using **your own** API key. Their privacy policy applies:
-   - OpenAI: <https://openai.com/policies/privacy-policy>
-   - Google (Gemini): <https://policies.google.com/privacy>
-   - Anthropic (Claude — text post-processing only): <https://www.anthropic.com/legal/privacy>
-   - AWS: <https://aws.amazon.com/privacy/>
-2. **The LLM provider you choose for "AI 整理" (post-processing).** Same as above — text transcripts get sent to your selected LLM API.
-3. **Webhook URLs you configure.** If you add a webhook destination, the transcript and/or audio file is POSTed to that URL when the trigger you set fires (per-segment or on note finalize).
-4. **Local Whisper.** When you choose the on-device option, the model file (~75 MB – 3 GB depending on your size choice) is downloaded **once** from `huggingface.co/ggerganov/whisper.cpp`. After that, transcription happens fully offline and your audio leaves the device only if you also configure a webhook.
-5. **Google AdMob.** The app shows banner ads. AdMob's SDK collects device-level signals to serve ads (ad ID, IP, OS version, etc.) according to <https://policies.google.com/technologies/ads>. We do not transmit your recordings, transcripts, or any personal content to AdMob.
+- **Google Play**: search for "WeaveNote" by easierlife.
 
-We do not bundle any third-party analytics SDK (no Firebase Analytics, no Crashlytics, no Sentry).
+## Links
 
-## 3. Permissions
-
-| Permission | Why |
-|---|---|
-| `RECORD_AUDIO` | Core: capturing your voice notes. |
-| `INTERNET` | Sending audio/transcripts to the STT/LLM/webhook services **you configure**, and downloading the local Whisper model on first use. Also used by AdMob. |
-| `POST_NOTIFICATIONS` | Showing the persistent "recording in progress" notification so the OS doesn't kill recording when the screen is off. |
-| `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MICROPHONE`, `WAKE_LOCK` | Same — keeps the recording alive in the background. |
-
-## 4. Children
-
-WeaveNote is not directed at children under 13. We do not knowingly collect data from children.
-
-## 5. Your choices
-
-- **Stop using cloud STT/LLM**: switch to "本地 Whisper" in settings to keep recordings on-device.
-- **Delete a recording or the entire note**: delete it from the note detail screen — both the audio file and transcript are removed from the device.
-- **Reset the app**: uninstall WeaveNote. Android removes all app data including recordings, transcripts, settings, and stored API keys.
-- **Opt out of personalised ads**: Android Settings → Privacy → Ads → "Delete advertising ID".
-
-## 6. Contact
-
-Questions or requests: **<shiaukai@gmail.com>**.
-
-## 7. Changes
-
-If we change this policy we will update the date at the top and (if changes are material) note it in the app's release notes on Google Play.
+- [Privacy Policy](/privacy.html)
+- Contact: <shiaukai@gmail.com>
