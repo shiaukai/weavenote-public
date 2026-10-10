@@ -39,7 +39,7 @@ Your recordings and transcripts only go to services **you yourself configure**, 
    Before a short segment (under 10 seconds) goes to a cloud STT provider, the app checks **on your device** whether anyone is speaking in it, using two small models bundled with the app (Silero VAD and the CED-tiny sound classifier). Segments with no speech, such as silence, breathing or Discord notification sounds, are not sent; you can still send one yourself with ↻. This check runs offline and sends nothing anywhere.
 2. **The LLM provider you choose for "AI 整理" (post-processing) and summaries.** Same as above — text transcripts get sent to your selected LLM API (OpenAI, Groq, Gemini, Claude, or AWS Bedrock).
 3. **Webhook URLs you configure.** If you add a webhook destination, the transcript and/or audio file is POSTed to that URL when a note is finished, and sent again when its transcript, title or summary changes. Discord channel webhooks receive text only (transcript and summary), never audio.
-4. **Model downloads.** When you choose Local Whisper, the model file (~75 MB – 3 GB depending on your size choice) is downloaded **once** from `huggingface.co/ggerganov/whisper.cpp`. After that, transcription happens fully offline and your microphone recordings leave the device only if you also configure a webhook. The first time you use the Discord voice feature, the app also downloads a speech model (SenseVoice, ~237 MB) from `huggingface.co`, over Wi-Fi only. Nothing from your notes is uploaded for these downloads.
+4. **Local Whisper.** When you choose the on-device option, the model file (~75 MB – 3 GB depending on your size choice) is downloaded **once** from `huggingface.co/ggerganov/whisper.cpp`. After that, transcription happens fully offline and your microphone recordings leave the device only if you also configure a webhook.
 5. **Our Discord bot (the Discord voice feature).** When you start a Discord voice note (開始 Discord 語音筆記), you paste a Discord voice channel link and the app asks our bot service (`weavenote.life.easier.tw`) to join that channel, sending it the channel's Discord server and channel IDs. While the bot is in the channel:
    - It receives the voice audio of **everyone who speaks in the channel**, separated per speaker, along with each speaker's Discord user ID and display name.
    - It runs automatic speech detection on the server and discards segments with no speech.
@@ -58,7 +58,7 @@ We do not bundle any third-party analytics SDK (no Firebase Analytics, no Crashl
 | Permission | Why |
 |---|---|
 | `RECORD_AUDIO` | Core: capturing your voice notes. |
-| `INTERNET` | Sending audio/transcripts to the STT/LLM/webhook services **you configure**, talking to our Discord bot when you use the Discord voice feature, and downloading on-device models on first use. Also used by AdMob. |
+| `INTERNET` | Sending audio/transcripts to the STT/LLM/webhook services **you configure**, talking to our Discord bot when you use the Discord voice feature, and downloading the local Whisper model on first use. Also used by AdMob. |
 | `POST_NOTIFICATIONS` | Showing the persistent "recording in progress" notification so the OS doesn't kill recording when the screen is off. |
 | `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MICROPHONE`, `WAKE_LOCK` | Same — keeps the recording alive in the background. |
 | `FOREGROUND_SERVICE_DATA_SYNC` | Keeps a Discord voice note receiving, and AI 整理 running, while the app is in the background. |
