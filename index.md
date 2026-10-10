@@ -14,7 +14,7 @@ A minimal voice-note app for Android: hit record, get a clean transcript, option
 
 ## What it doesn't do
 
-- **No backend.** The app has no server. Recordings, transcripts, settings, and API keys all live on your device.
+- **No backend for your notes.** Recordings, transcripts, settings, and API keys live on your device. The only server we run is the bot behind the optional Discord voice feature, which relays Discord audio to the app and deletes it within 24 hours.
 - **No analytics SDK.** No Firebase Analytics, no Crashlytics, no Sentry.
 - **No account.** No sign-up, no login.
 
