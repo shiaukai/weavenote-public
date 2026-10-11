@@ -9,7 +9,7 @@ title_en: Privacy Policy
 
 # WeaveNote 隱私權政策
 
-**最後更新：2026-10-11**
+**最後更新：2026-10-12**
 
 WeaveNote（以下稱「**我們**」、「**本 App**」）由 **easierlife**（個人品牌，台灣；<shiaukai@gmail.com>）發行。本頁說明 App 會處理哪些資料、資料會送到哪裡，以及你有哪些選擇。這個 App 刻意只收集最少的資料，所以我們盡量寫得簡短、具體。
 
@@ -20,18 +20,18 @@ WeaveNote（以下稱「**我們**」、「**本 App**」）由 **easierlife**�
 | 類型 | 存放位置 |
 |------|---------------|
 | 筆記的**錄音檔**：麥克風錄的和匯入檔案產生的 `.wav`，以及透過 Discord 語音功能收到、或從 iOS 分享卡片存下的 `.m4a` 片段 | **Android：**共用儲存空間中 App 的媒體資料夾（`/sdcard/Android/media/com.easierlife.weavenote/notes/`）。**iOS：**App 的私有儲存空間。 |
-| **逐字稿、摘要、筆記標題和說明**（你可以替筆記寫的描述），以及每個 Discord 片段上說話者的 Discord 顯示名稱 | 你的裝置上，App 的私有儲存空間（`/data/data/com.easierlife.weavenote/`） |
+| **逐字稿**（以及你用 AI 校稿後的版本，跟原文分開保存）、**摘要、筆記標題和說明**（你可以替筆記寫的描述），以及每個 Discord 片段上說話者的 Discord 顯示名稱 | 你的裝置上，App 的私有儲存空間（`/data/data/com.easierlife.weavenote/`） |
 | **你匯入或分享給 App 的檔案**（音訊，或影片的聲音） | 轉檔和轉錄期間放在 App 快取中的暫存複本，完成後刪除。分享到分享卡片的片段，只有在你按「存成筆記」時才會保留（見下文）。 |
 | **資料庫備份**：上述逐字稿、摘要與筆記資訊的複本 | **Android：**`/sdcard/Android/media/com.easierlife.weavenote/db_backup/`，在你結束一則筆記或一場 Discord 接收、或在「設定 → 資料備份」按「立即備份」時更新。**iOS：**App 的私有儲存空間。 |
 | **設定**（服務商偏好、詞彙群組、webhook 網址、你取名存下的 Discord 語音頻道） | 你的裝置上 |
-| OpenAI／Groq／Gemini／Claude／AWS Bedrock 的 **API 金鑰**，以及尚未結束的 Discord 接收的存取權杖 | 你的裝置上，存放在 **Android Keystore／iOS 鑰匙圈**（由作業系統加密）。在 iOS 上，分享卡片會另外保存一份你的轉錄設定和 STT 金鑰，放在只有 App 和它的分享延伸功能共用的鑰匙圈項目中。 |
+| OpenAI／Groq／Gemini／Claude／AWS Bedrock 的 **API 金鑰**，以及尚未結束的 Discord 接收的存取權杖 | 你的裝置上，存放在 **Android Keystore／iOS 鑰匙圈**（由作業系統加密）。在 iOS 上，分享卡片會另外保存一份你的轉錄設定、STT 金鑰，以及校稿用的 AI 模型的 API 金鑰，放在只有 App 和它的分享延伸功能共用的鑰匙圈項目中。 |
 | **錯誤紀錄**：App 自己最近 30 天的錯誤訊息 | 你的裝置上，App 的快取資料夾（見下文）。在 iOS 上，分享卡片會先把錯誤存在 App 的共用容器，等下次開啟 App 時再移進紀錄。 |
 
 **關於 Android 的媒體資料夾。**錄音檔和資料庫備份存放在 App 的私有儲存空間之外，所以重新安裝後仍會保留：解除安裝 WeaveNote 時，Android **不會**刪除這個資料夾；重新安裝後，App 會從備份還原你的筆記。因為這是共用的媒體儲存空間，你可以用檔案管理工具或透過 USB 開啟這些檔案，而你允許存取音訊的其他 App（例如音樂播放器）也看得到這些錄音檔。
 
 **錯誤紀錄不會離開你的裝置。**App 會記錄自己的錯誤訊息（例如網路連線或轉錄失敗），方便診斷問題。紀錄保留最近 30 天、最多 500 筆，放在 App 的快取資料夾，作業系統可能會清除它（例如儲存空間不足或你清除快取時）。寫入之前會先遮蔽 API 金鑰、存取權杖和下載連結的簽章。你可以在「工程模式 → 錯誤紀錄」檢視、複製或清除紀錄（在「設定 → 關於」連點版本號 10 下即可開啟工程模式）。除非你自己複製並寄給我們，否則我們不會拿到這些紀錄。
 
-**匯入和分享錄音。**你可以匯入音訊或影片檔（匯入錄音檔），或從其他 App 把檔案分享給 WeaveNote，例如 LINE 的語音訊息。檔案會在你的裝置上讀取和轉檔；影片只會用到聲音，畫面不會離開裝置。分享的檔案會開啟**分享卡片**，在你分享的那個 App 上方顯示逐字稿：它會把音訊送到你選擇的雲端 STT 服務商（第 2 節第 1 項），除非你按「存成筆記」，否則什麼都不保留；關閉卡片就會刪除暫存複本。在 Android 上，卡片會得知是哪個 App 分享了檔案，並把那個 App 的名稱用在筆記標題；除此之外不會從那個 App 收到任何東西（沒有聊天內容、傳送者或聯絡人資料）。在 iOS 上，卡片是 App 內附的分享延伸功能，只會使用雲端 STT 服務商。
+**匯入和分享錄音。**你可以匯入音訊或影片檔（匯入錄音檔），或從其他 App 把檔案分享給 WeaveNote，例如 LINE 的語音訊息。檔案會在你的裝置上讀取和轉檔；影片只會用到聲音，畫面不會離開裝置。分享的檔案會開啟**分享卡片**，在你分享的那個 App 上方顯示逐字稿：它會把音訊送到你選擇的雲端 STT 服務商（第 2 節第 1 項），只有在你按「校稿」時才會把逐字稿送到你的 LLM 服務商（第 2 節第 2 項）；除非你按「存成筆記」，否則什麼都不保留；關閉卡片就會刪除暫存複本。在 Android 上，卡片會得知是哪個 App 分享了檔案，並把那個 App 的名稱用在筆記標題；除此之外不會從那個 App 收到任何東西（沒有聊天內容、傳送者或聯絡人資料）。在 iOS 上，卡片是 App 內附的分享延伸功能，只會使用雲端 STT 服務商。
 
 **我們只營運一台伺服器，而且只用於 Discord 語音功能**（第 2 節第 5 項）。它把 Discord 的語音轉送給 App，最多保留 24 小時。你的麥克風錄音、逐字稿、摘要和設定都不會送到這台伺服器；如果你不使用 Discord 功能，App 完全不會連線到它。
 
@@ -47,7 +47,7 @@ WeaveNote（以下稱「**我們**」、「**本 App**」）由 **easierlife**�
    - AWS：<https://aws.amazon.com/privacy/>
 
    短片段（10 秒以下）送到雲端 STT 服務商之前，App 會**在你的裝置上**用兩個隨 App 附帶的小模型（Silero VAD 和 CED-tiny 聲音分類器）檢查裡面有沒有人在說話。沒有人說話的片段，例如靜音、呼吸聲或 Discord 的通知音效，不會送出；你仍然可以按 ↻ 自己送出。這項檢查離線執行，不會傳送任何資料。分享卡片不做這項檢查：你分享片段就是為了轉錄它。
-2. **你為「AI 整理」（後製整理）和摘要選擇的 LLM 服務商。**同上：文字逐字稿會送到你選的 LLM API（OpenAI、Groq、Gemini、Claude 或 AWS Bedrock）；如果你替筆記寫了說明，也會一起送出，讓 AI 知道是誰在說話、錄音的主題是什麼。
+2. **你為「校稿」（用 AI 校正逐字稿）和摘要選擇的 LLM 服務商。**同上：文字逐字稿會送到你選的 LLM API（OpenAI、Groq、Gemini、Claude 或 AWS Bedrock）；如果你替筆記寫了說明，也會一起送出，讓 AI 知道是誰在說話、錄音的主題是什麼。
 3. **你設定的 webhook 網址。**如果你新增了 webhook，筆記完成時會把逐字稿和／或錄音檔 POST 到該網址；逐字稿、標題或摘要變更時會再送一次。Discord 頻道 webhook 只會收到文字（逐字稿和摘要），不會收到音訊。
 4. **本地 Whisper。**選擇在裝置上轉錄時，模型檔（依你選的大小約 75 MB～3 GB）會從 `huggingface.co/ggerganov/whisper.cpp` 下載**一次**。之後轉錄完全離線進行；除非你另外設定了 webhook，否則麥克風錄音不會離開裝置。
 5. **我們的 Discord bot（Discord 語音功能）。**開始 Discord 語音筆記時，你會貼上 Discord 語音頻道的連結，App 會請我們的 bot 服務（`weavenote.life.easier.tw`）加入該頻道，並傳送該頻道的 Discord 伺服器 ID 和頻道 ID。bot 在頻道中時：
@@ -71,7 +71,7 @@ App 沒有內建任何第三方分析 SDK（沒有 Firebase Analytics、Crashlyt
 | `INTERNET` | 把音訊／逐字稿送到**你設定**的 STT／LLM／webhook 服務、使用 Discord 語音功能時和我們的 Discord bot 連線，以及第一次使用時下載本地 Whisper 模型。AdMob 也會用到。 |
 | `POST_NOTIFICATIONS` | 顯示常駐的「錄音中」通知，讓作業系統在螢幕關閉時不會中止錄音。 |
 | `FOREGROUND_SERVICE`、`FOREGROUND_SERVICE_MICROPHONE`、`WAKE_LOCK` | 同上：讓錄音在背景持續進行。 |
-| `FOREGROUND_SERVICE_DATA_SYNC` | App 在背景時，讓 Discord 語音筆記繼續接收、AI 整理繼續執行。 |
+| `FOREGROUND_SERVICE_DATA_SYNC` | App 在背景時，讓 Discord 語音筆記繼續接收、AI 校稿繼續執行。 |
 
 ## 4. 兒童
 
@@ -101,7 +101,7 @@ WeaveNote 不是以 13 歲以下的兒童為對象。我們不會在知情的情
 
 # WeaveNote Privacy Policy
 
-**Last updated: 2026-10-11**
+**Last updated: 2026-10-12**
 
 WeaveNote ("**we**", "**the app**") is published by **easierlife** (個人品牌, Taiwan; <shiaukai@gmail.com>). This page explains what data the app handles, where it goes, and what choices you have. We try to keep it short and concrete because the app is intentionally minimal in what it collects.
 
@@ -112,18 +112,18 @@ This policy is also available in Traditional Chinese (中文); if the two versio
 | Type | Where it lives |
 |------|---------------|
 | **Audio recordings** of your notes: `.wav` from the microphone and from files you import, `.m4a` segments received through the Discord voice feature or saved from the iOS share card | **Android:** the app's media folder on shared storage (`/sdcard/Android/media/com.easierlife.weavenote/notes/`). **iOS:** the app's private storage. |
-| **Transcripts, summaries, note titles and 說明 (the description you can write for a note)**, plus the speaker's Discord display name on each Discord segment | On your device, in the app's private storage (`/data/data/com.easierlife.weavenote/`) |
+| **Transcripts** (and, when you make one, their AI-proofread version — 校稿 — kept beside the original), **summaries, note titles and 說明 (the description you can write for a note)**, plus the speaker's Discord display name on each Discord segment | On your device, in the app's private storage (`/data/data/com.easierlife.weavenote/`) |
 | **Files you import or share to the app** (audio, or a video's soundtrack) | A temporary copy in the app's cache while it's converted and transcribed, deleted afterwards. A clip shared to the share card is kept only if you tap 存成筆記 (see below). |
 | **Database backup**: a copy of the transcripts, summaries and note details above | **Android:** `/sdcard/Android/media/com.easierlife.weavenote/db_backup/`, refreshed when you finish a note or a Discord session, or when you tap 立即備份 in 設定 → 資料備份. **iOS:** the app's private storage. |
 | **Settings** (provider preferences, vocabulary groups, webhook URLs, the Discord voice channels you save under a name) | On your device |
-| **API keys** for OpenAI / Groq / Gemini / Claude / AWS Bedrock, and the access token of a Discord session that hasn't finished yet | On your device, in **Android Keystore / iOS Keychain** (encrypted by the OS). On iOS, the share card gets its own copy of your transcription settings and STT keys, in a Keychain item shared only between the app and its share extension. |
+| **API keys** for OpenAI / Groq / Gemini / Claude / AWS Bedrock, and the access token of a Discord session that hasn't finished yet | On your device, in **Android Keystore / iOS Keychain** (encrypted by the OS). On iOS, the share card gets its own copy of your transcription settings, STT keys and the API key of the AI model you use for 校稿, in a Keychain item shared only between the app and its share extension. |
 | **Error log**: the app's own error messages from the last 30 days | On your device, in the app's cache folder (see below). On iOS the share card keeps its errors in the app's shared container until the app next opens and moves them into the log. |
 
 **About the Android media folder.** Audio files and the database backup are kept outside the app's private storage so they survive a reinstall: Android does **not** delete this folder when you uninstall WeaveNote, and if you reinstall, the app restores your notes from the backup. Because it is shared media storage, you can open the files with a file manager or over USB, and Android makes the audio files visible to other apps you have allowed to access audio (for example a music player).
 
 **The error log never leaves your device.** The app records its own error messages (for example a failed network request or transcription) so problems can be diagnosed. It keeps the last 30 days, at most 500 entries, in the app's cache folder, which the OS may clear (for example when storage runs low or you clear the cache). API keys, access tokens and download-link signatures are masked before anything is written. You can view, copy or clear the log in 工程模式 → 錯誤紀錄 (工程模式 is unlocked by tapping the version number 10 times in 設定 → 關於). It only reaches us if you copy it and send it to us yourself.
 
-**Importing and sharing recordings.** You can import an audio or video file (匯入錄音檔), or share one to WeaveNote from another app, for example a LINE voice message. The file is read and converted on your device; for a video only the soundtrack is used, and the picture never leaves the device. A shared file opens the **share card**, which shows the transcript over the app you shared from: it sends the audio to the cloud STT provider you chose (§2, item 1) and keeps nothing unless you tap 存成筆記 — closing the card deletes its temporary copy. On Android the card is told which app shared the file and uses that app's name in the note's title; it receives nothing else from that app (no chat, sender or contact details). On iOS the card is a share extension that's part of the app, and it only uses cloud STT providers.
+**Importing and sharing recordings.** You can import an audio or video file (匯入錄音檔), or share one to WeaveNote from another app, for example a LINE voice message. The file is read and converted on your device; for a video only the soundtrack is used, and the picture never leaves the device. A shared file opens the **share card**, which shows the transcript over the app you shared from: it sends the audio to the cloud STT provider you chose (§2, item 1) — and the transcript to your LLM provider (§2, item 2) only if you tap 校稿 — and keeps nothing unless you tap 存成筆記 — closing the card deletes its temporary copy. On Android the card is told which app shared the file and uses that app's name in the note's title; it receives nothing else from that app (no chat, sender or contact details). On iOS the card is a share extension that's part of the app, and it only uses cloud STT providers.
 
 **We run one server, and only for the Discord voice feature** (§2, item 5). It relays Discord voice audio to the app and keeps it for at most 24 hours. Your microphone recordings, transcripts, summaries and settings never go to it, and if you don't use the Discord feature the app doesn't contact it at all.
 
@@ -139,7 +139,7 @@ Your recordings and transcripts only go to services **you yourself configure**, 
    - AWS: <https://aws.amazon.com/privacy/>
 
    Before a short segment (under 10 seconds) goes to a cloud STT provider, the app checks **on your device** whether anyone is speaking in it, using two small models bundled with the app (Silero VAD and the CED-tiny sound classifier). Segments with no speech, such as silence, breathing or Discord notification sounds, are not sent; you can still send one yourself with ↻. This check runs offline and sends nothing anywhere. The share card skips it: you shared the clip to have it transcribed.
-2. **The LLM provider you choose for "AI 整理" (post-processing) and summaries.** Same as above — text transcripts get sent to your selected LLM API (OpenAI, Groq, Gemini, Claude, or AWS Bedrock), together with the note's 說明 if you wrote one, so the AI knows who is speaking and what the recording is about.
+2. **The LLM provider you choose for 校稿 (AI proofreading of a transcript) and summaries.** Same as above — text transcripts get sent to your selected LLM API (OpenAI, Groq, Gemini, Claude, or AWS Bedrock), together with the note's 說明 if you wrote one, so the AI knows who is speaking and what the recording is about.
 3. **Webhook URLs you configure.** If you add a webhook destination, the transcript and/or audio file is POSTed to that URL when a note is finished, and sent again when its transcript, title or summary changes. Discord channel webhooks receive text only (transcript and summary), never audio.
 4. **Local Whisper.** When you choose the on-device option, the model file (~75 MB – 3 GB depending on your size choice) is downloaded **once** from `huggingface.co/ggerganov/whisper.cpp`. After that, transcription happens fully offline and your microphone recordings leave the device only if you also configure a webhook.
 5. **Our Discord bot (the Discord voice feature).** When you start a Discord voice note (開始 Discord 語音筆記), you paste a Discord voice channel link and the app asks our bot service (`weavenote.life.easier.tw`) to join that channel, sending it the channel's Discord server and channel IDs. While the bot is in the channel:
@@ -163,7 +163,7 @@ We do not bundle any third-party analytics SDK (no Firebase Analytics, no Crashl
 | `INTERNET` | Sending audio/transcripts to the STT/LLM/webhook services **you configure**, talking to our Discord bot when you use the Discord voice feature, and downloading the local Whisper model on first use. Also used by AdMob. |
 | `POST_NOTIFICATIONS` | Showing the persistent "recording in progress" notification so the OS doesn't kill recording when the screen is off. |
 | `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MICROPHONE`, `WAKE_LOCK` | Same — keeps the recording alive in the background. |
-| `FOREGROUND_SERVICE_DATA_SYNC` | Keeps a Discord voice note receiving, and AI 整理 running, while the app is in the background. |
+| `FOREGROUND_SERVICE_DATA_SYNC` | Keeps a Discord voice note receiving, and AI 校稿 running, while the app is in the background. |
 
 ## 4. Children
 
