@@ -4,7 +4,7 @@ permalink: /privacy.html
 
 # WeaveNote Privacy Policy
 
-**Last updated: 2026-10-10**
+**Last updated: 2026-10-11**
 
 WeaveNote ("**we**", "**the app**") is published by **easierlife** (個人品牌, Taiwan; <shiaukai@gmail.com>). This page explains what data the app handles, where it goes, and what choices you have. We try to keep it short and concrete because the app is intentionally minimal in what it collects.
 
@@ -12,16 +12,19 @@ WeaveNote ("**we**", "**the app**") is published by **easierlife** (個人品牌
 
 | Type | Where it lives |
 |------|---------------|
-| **Audio recordings** of your notes: `.wav` from the microphone, `.m4a` segments received through the Discord voice feature | **Android:** the app's media folder on shared storage (`/sdcard/Android/media/com.easierlife.weavenote/notes/`). **iOS:** the app's private storage. |
-| **Transcripts, summaries and note titles**, plus the speaker's Discord display name on each Discord segment | On your device, in the app's private storage (`/data/data/com.easierlife.weavenote/`) |
+| **Audio recordings** of your notes: `.wav` from the microphone and from files you import, `.m4a` segments received through the Discord voice feature or saved from the iOS share card | **Android:** the app's media folder on shared storage (`/sdcard/Android/media/com.easierlife.weavenote/notes/`). **iOS:** the app's private storage. |
+| **Transcripts, summaries, note titles and 說明 (the description you can write for a note)**, plus the speaker's Discord display name on each Discord segment | On your device, in the app's private storage (`/data/data/com.easierlife.weavenote/`) |
+| **Files you import or share to the app** (audio, or a video's soundtrack) | A temporary copy in the app's cache while it's converted and transcribed, deleted afterwards. A clip shared to the share card is kept only if you tap 存成筆記 (see below). |
 | **Database backup**: a copy of the transcripts, summaries and note details above | **Android:** `/sdcard/Android/media/com.easierlife.weavenote/db_backup/`, refreshed when you finish a note or a Discord session, or when you tap 立即備份 in 設定 → 資料備份. **iOS:** the app's private storage. |
 | **Settings** (provider preferences, vocabulary groups, webhook URLs) | On your device |
-| **API keys** for OpenAI / Groq / Gemini / Claude / AWS Bedrock, and the access token of a Discord session that hasn't finished yet | On your device, in **Android Keystore / iOS Keychain** (encrypted by the OS) |
-| **Error log**: the app's own error messages from the last 30 days | On your device, in the app's cache folder (see below) |
+| **API keys** for OpenAI / Groq / Gemini / Claude / AWS Bedrock, and the access token of a Discord session that hasn't finished yet | On your device, in **Android Keystore / iOS Keychain** (encrypted by the OS). On iOS, the share card gets its own copy of your transcription settings and STT keys, in a Keychain item shared only between the app and its share extension. |
+| **Error log**: the app's own error messages from the last 30 days | On your device, in the app's cache folder (see below). On iOS the share card keeps its errors in the app's shared container until the app next opens and moves them into the log. |
 
 **About the Android media folder.** Audio files and the database backup are kept outside the app's private storage so they survive a reinstall: Android does **not** delete this folder when you uninstall WeaveNote, and if you reinstall, the app restores your notes from the backup. Because it is shared media storage, you can open the files with a file manager or over USB, and Android makes the audio files visible to other apps you have allowed to access audio (for example a music player).
 
 **The error log never leaves your device.** The app records its own error messages (for example a failed network request or transcription) so problems can be diagnosed. It keeps the last 30 days, at most 500 entries, in the app's cache folder, which the OS may clear (for example when storage runs low or you clear the cache). API keys, access tokens and download-link signatures are masked before anything is written. You can view, copy or clear the log in 工程模式 → 錯誤紀錄 (工程模式 is unlocked by tapping the version number 10 times in 設定 → 關於). It only reaches us if you copy it and send it to us yourself.
+
+**Importing and sharing recordings.** You can import an audio or video file (匯入錄音檔), or share one to WeaveNote from another app, for example a LINE voice message. The file is read and converted on your device; for a video only the soundtrack is used, and the picture never leaves the device. A shared file opens the **share card**, which shows the transcript over the app you shared from: it sends the audio to the cloud STT provider you chose (§2, item 1) and keeps nothing unless you tap 存成筆記 — closing the card deletes its temporary copy. On Android the card is told which app shared the file and uses that app's name in the note's title; it receives nothing else from that app (no chat, sender or contact details). On iOS the card is a share extension that's part of the app, and it only uses cloud STT providers.
 
 **We run one server, and only for the Discord voice feature** (§2, item 5). It relays Discord voice audio to the app and keeps it for at most 24 hours. Your microphone recordings, transcripts, summaries and settings never go to it, and if you don't use the Discord feature the app doesn't contact it at all.
 
@@ -29,15 +32,15 @@ WeaveNote ("**we**", "**the app**") is published by **easierlife** (個人品牌
 
 Your recordings and transcripts only go to services **you yourself configure**, and through our Discord bot if you use the Discord voice feature:
 
-1. **The cloud STT provider you choose.** If you select OpenAI Whisper, Groq, Gemini, or AWS Bedrock Nova, your recording (or a chunk of it) is sent over HTTPS to that provider's API using **your own** API key. If you enter your own server address for an OpenAI-compatible service, it goes to that server instead. Their privacy policy applies:
+1. **The cloud STT provider you choose.** If you select OpenAI Whisper, Groq, Gemini, or AWS Bedrock Nova, your recording — or the audio of a file you import or share — (or a chunk of it) is sent over HTTPS to that provider's API using **your own** API key. If you enter your own server address for an OpenAI-compatible service, it goes to that server instead. Their privacy policy applies:
    - OpenAI: <https://openai.com/policies/privacy-policy>
    - Groq: <https://groq.com/privacy-policy/>
    - Google (Gemini): <https://policies.google.com/privacy>
    - Anthropic (Claude — text post-processing only): <https://www.anthropic.com/legal/privacy>
    - AWS: <https://aws.amazon.com/privacy/>
 
-   Before a short segment (under 10 seconds) goes to a cloud STT provider, the app checks **on your device** whether anyone is speaking in it, using two small models bundled with the app (Silero VAD and the CED-tiny sound classifier). Segments with no speech, such as silence, breathing or Discord notification sounds, are not sent; you can still send one yourself with ↻. This check runs offline and sends nothing anywhere.
-2. **The LLM provider you choose for "AI 整理" (post-processing) and summaries.** Same as above — text transcripts get sent to your selected LLM API (OpenAI, Groq, Gemini, Claude, or AWS Bedrock).
+   Before a short segment (under 10 seconds) goes to a cloud STT provider, the app checks **on your device** whether anyone is speaking in it, using two small models bundled with the app (Silero VAD and the CED-tiny sound classifier). Segments with no speech, such as silence, breathing or Discord notification sounds, are not sent; you can still send one yourself with ↻. This check runs offline and sends nothing anywhere. The share card skips it: you shared the clip to have it transcribed.
+2. **The LLM provider you choose for "AI 整理" (post-processing) and summaries.** Same as above — text transcripts get sent to your selected LLM API (OpenAI, Groq, Gemini, Claude, or AWS Bedrock), together with the note's 說明 if you wrote one, so the AI knows who is speaking and what the recording is about.
 3. **Webhook URLs you configure.** If you add a webhook destination, the transcript and/or audio file is POSTed to that URL when a note is finished, and sent again when its transcript, title or summary changes. Discord channel webhooks receive text only (transcript and summary), never audio.
 4. **Local Whisper.** When you choose the on-device option, the model file (~75 MB – 3 GB depending on your size choice) is downloaded **once** from `huggingface.co/ggerganov/whisper.cpp`. After that, transcription happens fully offline and your microphone recordings leave the device only if you also configure a webhook.
 5. **Our Discord bot (the Discord voice feature).** When you start a Discord voice note (開始 Discord 語音筆記), you paste a Discord voice channel link and the app asks our bot service (`weavenote.life.easier.tw`) to join that channel, sending it the channel's Discord server and channel IDs. While the bot is in the channel:
@@ -69,7 +72,8 @@ WeaveNote is not directed at children under 13. We do not knowingly collect data
 
 ## 5. Your choices
 
-- **Stop using cloud STT/LLM**: switch to "本地 Whisper" in settings to keep recordings on-device.
+- **Stop using cloud STT/LLM**: switch to "本地 Whisper" in settings to keep recordings on-device. (The share card always uses a cloud provider; import the file from inside the app instead.)
+- **Leave the 說明 empty** if you don't want anything beyond the transcript sent to your LLM provider.
 - **Don't use the Discord voice feature** if you don't want audio to pass through our bot. Nothing is sent to it unless you start a Discord voice note.
 - **Delete a recording or the entire note**: delete it from the note detail screen — both the audio file and transcript are removed from the device. On Android, the database backup is refreshed the next time a backup runs, so a deleted note's text can stay in the backup until then. Discord audio on our bot's storage is deleted within 24 hours either way.
 - **Clear the error log**: 工程模式 → 錯誤紀錄 → 清除, or clear the app's cache in the system settings.

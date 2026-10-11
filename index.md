@@ -11,6 +11,9 @@ A minimal voice-note app for Android: hit record, get a clean transcript, option
 - **AI 整理** (optional post-processing) — send the transcript to OpenAI / Gemini / Claude / Bedrock to clean it up, summarise, or reformat. Again, your own API key.
 - **Webhooks** — POST the audio and/or transcript to any URL you configure (per-segment or when the note is finalised).
 - **Vocabulary groups** — feed domain-specific terms to the STT provider so names and jargon come out right.
+- **Import recordings** — turn an audio file, or a video's soundtrack, into a note.
+- **Share card** — share a voice message to WeaveNote from LINE or any other app and read its transcript right there, without leaving that app. Save it as a note if you want to keep it.
+- **說明 (description)** — note who's talking and what the recording is about; AI 整理 and summaries take it into account.
 
 ## What it doesn't do
 
