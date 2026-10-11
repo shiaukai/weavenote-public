@@ -85,7 +85,7 @@ WeaveNote 不是以 13 歲以下的兒童為對象。我們不會在知情的情
 - **刪除錄音或整則筆記**：在筆記詳情畫面刪除，錄音檔和逐字稿都會從裝置上移除。在 Android 上，資料庫備份會在下一次備份時更新，所以在那之前，已刪除筆記的文字可能還留在備份中。我們 bot 儲存空間裡的 Discord 音訊，無論如何都會在 24 小時內刪除。
 - **清除錯誤紀錄**：「工程模式 → 錯誤紀錄 → 清除」，或在系統設定中清除 App 的快取。
 - **重設 App**：解除安裝 WeaveNote。在 iOS 上會移除所有 App 資料。在 Android 上會移除 App 的私有資料（逐字稿、設定、儲存的 API 金鑰、錯誤紀錄），但**不會**移除存放錄音檔和資料庫備份的媒體資料夾 `/sdcard/Android/media/com.easierlife.weavenote/`；要一併移除，請用檔案管理工具刪除這個資料夾。
-- **停用個人化廣告**：Android 設定 → 隱私權 → 廣告 →「刪除廣告 ID」。
+- **停用個人化廣告**：Android 設定 → 隱私權 → 廣告 →「刪除廣告 ID」。iOS 不需要另外設定：App 不會跟你要求「允許追蹤」的權限（App 追蹤透明度），所以 AdMob 拿不到你裝置的廣告識別碼。
 
 ## 6. 聯絡我們
 
@@ -93,7 +93,7 @@ WeaveNote 不是以 13 歲以下的兒童為對象。我們不會在知情的情
 
 ## 7. 政策變更
 
-如果我們修改本政策，會更新頁首的日期；如果是重大變更，也會在 Google Play 的版本資訊中說明。
+如果我們修改本政策，會更新頁首的日期；如果是重大變更，也會在 Google Play 和 App Store 的版本資訊中說明。
 
 </div>
 
@@ -177,7 +177,7 @@ WeaveNote is not directed at children under 13. We do not knowingly collect data
 - **Delete a recording or the entire note**: delete it from the note detail screen — both the audio file and transcript are removed from the device. On Android, the database backup is refreshed the next time a backup runs, so a deleted note's text can stay in the backup until then. Discord audio on our bot's storage is deleted within 24 hours either way.
 - **Clear the error log**: 工程模式 → 錯誤紀錄 → 清除, or clear the app's cache in the system settings.
 - **Reset the app**: uninstall WeaveNote. On iOS this removes all app data. On Android it removes the app's private data (transcripts, settings, stored API keys, error log) but **not** the media folder `/sdcard/Android/media/com.easierlife.weavenote/` with your audio files and database backup; delete that folder with a file manager to remove them too.
-- **Opt out of personalised ads**: Android Settings → Privacy → Ads → "Delete advertising ID".
+- **Opt out of personalised ads**: Android Settings → Privacy → Ads → "Delete advertising ID". On iOS there's nothing to switch off: the app never asks for permission to track you (App Tracking Transparency), so AdMob doesn't get your device's advertising identifier.
 
 ## 6. Contact
 
@@ -185,6 +185,6 @@ Questions or requests: **<shiaukai@gmail.com>**.
 
 ## 7. Changes
 
-If we change this policy we will update the date at the top and (if changes are material) note it in the app's release notes on Google Play.
+If we change this policy we will update the date at the top and (if changes are material) note it in the app's release notes on Google Play and the App Store.
 
 </div>
