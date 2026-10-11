@@ -1,0 +1,19 @@
+{%- comment -%} Minima 2.5's footer, trimmed, with the description in both languages. {%- endcomment -%}
+<footer class="site-footer h-card">
+  <data class="u-url" href="{{ "/" | relative_url }}"></data>
+  <div class="wrapper">
+    <h2 class="footer-heading">{{ site.title | escape }}</h2>
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">easierlife</li>
+          <li><a class="u-email" href="mailto:shiaukai@gmail.com">shiaukai@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-col-2"></div>
+      <div class="footer-col footer-col-3">
+        <p><span class="lang-zh">{{ site.description | escape }}</span><span class="lang-en">{{ site.description_en | escape }}</span></p>
+      </div>
+    </div>
+  </div>
+</footer>

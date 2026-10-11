@@ -1,0 +1,54 @@
+{%- comment -%}
+  Minima 2.5's header, with fixed links and the 中文 / English switch.
+
+  Every page (layout: bilingual) has both languages: blocks marked class="lang-zh" or
+  class="lang-en" (markdown="1" so kramdown still renders them). Chinese
+  is the default; ?lang=en switches to English, and links within the site
+  then keep ?lang=en. This runs at the top of <body>, before any of that
+  content is drawn, so the other language never flashes up.
+{%- endcomment -%}
+<style>
+  html:not([data-lang="en"]) .lang-en,
+  html[data-lang="en"] .lang-zh { display: none !important; }
+</style>
+<script>
+  (function () {
+    var en = new URLSearchParams(location.search).get('lang') === 'en';
+    var html = document.documentElement;
+    html.setAttribute('data-lang', en ? 'en' : 'zh');
+    if (!en) return;
+    html.lang = 'en';
+    var title = {{ page.title_en | jsonify }};
+    document.title = title ? title + ' | WeaveNote'
+        : 'WeaveNote | ' + {{ site.description_en | jsonify }};
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+        if (a.hasAttribute('data-lang-switch')) return;
+        var u = new URL(a.getAttribute('href'), location.origin);
+        u.searchParams.set('lang', 'en');
+        a.setAttribute('href', u.pathname + u.search + u.hash);
+      });
+    });
+  })();
+</script>
+<header class="site-header" role="banner">
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+    <nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger">
+        <span class="menu-icon">
+          <svg viewBox="0 0 18 15" width="18px" height="15px">
+            <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+          </svg>
+        </span>
+      </label>
+      <div class="trigger">
+        <a class="page-link" href="{{ "/discord/" | relative_url }}">Discord</a>
+        <a class="page-link" href="{{ "/privacy.html" | relative_url }}"><span class="lang-zh">隱私權政策</span><span class="lang-en">Privacy Policy</span></a>
+        <a class="page-link lang-zh" data-lang-switch lang="en" href="{{ page.url | relative_url }}?lang=en">English</a>
+        <a class="page-link lang-en" data-lang-switch lang="zh-Hant" href="{{ page.url | relative_url }}">中文</a>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,4 +1,8 @@
 title: WeaveNote
-description: Voice notes with clean transcripts, for Android and iOS
+description: 語音筆記 App：錄音後得到乾淨的逐字稿，支援 Android 與 iOS
+description_en: Voice notes with clean transcripts, for Android and iOS
+lang: zh-Hant
+locale: zh_TW
 markdown: kramdown
 theme: minima
+

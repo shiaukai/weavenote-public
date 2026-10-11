@@ -1,0 +1,20 @@
+---
+layout: default
+---
+{%- comment -%}
+  Minima's page layout without the title header: each page writes its own
+  heading in both languages.
+{%- endcomment -%}
+<style>
+  /* Long paths and URLs would otherwise run off a phone screen, and in a
+     table squeeze the first column to a few characters, which Chinese then
+     wraps one character per line. */
+  .post-content code, .post-content a { overflow-wrap: anywhere; }
+  .post-content table { table-layout: fixed; width: 100%; }
+  .post-content th:first-child { width: 38%; }
+</style>
+<article class="post">
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>

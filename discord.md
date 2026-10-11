@@ -1,5 +1,8 @@
 ---
 permalink: /discord/
+layout: bilingual
+title: 把 WeaveNote 加進 Discord
+title_en: Add WeaveNote to Discord
 ---
 
 <!--
@@ -27,16 +30,30 @@ permalink: /discord/
   }
 </style>
 
+<div class="lang-zh" lang="zh-Hant" markdown="1">
+
 # 把 WeaveNote 加進 Discord 伺服器
 
 WeaveNote 的「Discord 語音筆記」會請 WeaveNote bot 進語音頻道收音，把每個人說的話分開轉成文字。使用前要先把 bot 加進你的 Discord 伺服器，每個伺服器只要加一次。
 
-<p><a class="wn-invite" href="https://weavenote.life.easier.tw/invite">把 WeaveNote 加進伺服器</a></p>
+</div>
+
+<div class="lang-en" lang="en" markdown="1">
+
+# Add WeaveNote to your Discord server
+
+WeaveNote's Discord voice notes have the WeaveNote bot join a voice channel and listen, so what each person says is transcribed separately. Before you start, add the bot to your Discord server — once per server.
+
+</div>
+
+<p><a class="wn-invite" href="https://weavenote.life.easier.tw/invite"><span class="lang-zh">把 WeaveNote 加進伺服器</span><span class="lang-en">Add WeaveNote to a server</span></a></p>
 
 <div class="wn-qr">
-  <img src="/assets/discord-invite-qr.svg" alt="邀請連結的 QR code">
-  <p>在電腦上看這頁的話，也可以用手機掃描，在手機上把 WeaveNote 加進伺服器。</p>
+  <img src="/assets/discord-invite-qr.svg" alt="QR code">
+  <p><span class="lang-zh">在電腦上看這頁的話，也可以用手機掃描，在手機上把 WeaveNote 加進伺服器。</span><span class="lang-en">Reading this on a computer? Scan this with your phone to add WeaveNote from there.</span></p>
 </div>
+
+<div class="lang-zh" lang="zh-Hant" markdown="1">
 
 ## 誰可以加
 
@@ -66,6 +83,36 @@ WeaveNote 的「Discord 語音筆記」會請 WeaveNote bot 進語音頻道收�
 
 開始錄之前，請先告訴頻道裡的人。bot 收什麼、存多久，請看[隱私權政策](/privacy.html)第 2 節第 5 項。
 
-## In English
+</div>
 
-Add WeaveNote to your Discord server with the button above. You need the **Manage Server** permission on that server; if you don't have it, send this page to a server admin. For a private voice channel, also give the bot **View Channel**, **Connect** and **Speak** in that channel's permissions. You can also add it from the bot's profile in Discord (**Add App**). What the bot collects and how long it's kept: [Privacy Policy](/privacy.html), section 2, item 5.
+<div class="lang-en" lang="en" markdown="1">
+
+## Who can add it
+
+You need the **Manage Server** permission on that server, which usually means the server owner or an admin.
+
+If you're a regular member, send this page to an admin: <https://weavenote.easier.tw/discord/?lang=en>
+
+## Steps
+
+1. Tap the button above. On a phone it opens the Discord app or your browser; sign in to Discord if asked.
+2. Choose the server to add it to and tap **Continue**.
+3. Check the permissions the bot asks for (View Channels, Connect, Speak) and tap **Authorize**.
+
+## Private voice channels
+
+For a private voice channel (one that not every member can see), the bot needs permission in that channel too: open the channel's **Edit Channel → Permissions**, add WeaveNote (or a role it has), and allow **View Channel**, **Connect** and **Speak**.
+
+## Or from the bot's profile
+
+Wherever you see WeaveNote in Discord (for example in a server that already has it), tap its avatar and choose **Add App** on its profile to add it to your own server.
+
+## After that
+
+1. In Discord, right-click the voice channel you want to record (long-press on a phone) and choose **Copy Link**.
+2. In WeaveNote, tap **Discord 語音筆記** (Discord voice note) on the home screen, paste the link and tap **開始接收** (start). The bot joins the channel to listen; everyone in it can see it.
+3. When you're done, tap **結束筆記** (finish) in the app. The bot leaves and the whole session is saved as one note.
+
+Tell the people in the channel before you start recording. What the bot collects and how long it's kept: [Privacy Policy](/privacy.html), section 2, item 5.
+
+</div>
