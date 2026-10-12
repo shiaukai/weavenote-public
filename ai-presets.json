@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "presets": [
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare Workers AI",
+      "description": "每天 10,000 Neurons 免費額度（台灣時間早上 8 點重置）。用於校稿和摘要。",
+      "guide": "https://weavenote.easier.tw/custom-ai/#cloudflare",
+      "fields": {
+        "ACCOUNT_ID": "帳戶 ID（Account ID）",
+        "API_KEY": "API Token"
+      },
+      "account": {
+        "chatUrl": "https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/ai/v1/chat/completions",
+        "modelsUrl": "https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/ai/models/search?task=Text%20Generation&hide_experimental=true&per_page=200",
+        "auth": "bearer",
+        "apiKey": "{API_KEY}",
+        "extraBody": { "max_tokens": 16384 },
+        "chatModels": [
+          "@cf/openai/gpt-oss-120b",
+          "@cf/zai-org/glm-4.7-flash",
+          "@cf/google/gemma-4-26b-a4b-it",
+          "@cf/openai/gpt-oss-20b"
+        ]
+      }
+    },
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "description": "一把 key 用很多家的模型，也有免費模型（每分鐘 20 次、每天 50 次）。openrouter/free 會自動挑一個免費模型。",
+      "guide": "https://weavenote.easier.tw/custom-ai/#openrouter",
+      "fields": {
+        "API_KEY": "API Key（到 openrouter.ai/keys 建立）"
+      },
+      "account": {
+        "chatUrl": "https://openrouter.ai/api/v1/chat/completions",
+        "auth": "bearer",
+        "apiKey": "{API_KEY}",
+        "headers": {
+          "HTTP-Referer": "https://weavenote.easier.tw",
+          "X-OpenRouter-Title": "WeaveNote"
+        },
+        "chatModels": [
+          "openrouter/free",
+          "nvidia/nemotron-3-super-120b-a12b:free",
+          "google/gemma-4-31b-it:free"
+        ]
+      }
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama（自己的電腦）",
+      "description": "模型跑在你自己的電腦上，資料不出家門。電腦要先設好 OLLAMA_HOST 和上下文長度；建好後到「AI 模型」頁按「從 API 更新清單」選模型。",
+      "guide": "https://weavenote.easier.tw/custom-ai/#ollama",
+      "fields": {
+        "HOST": "電腦的區域網路 IP（例如 192.168.1.20）"
+      },
+      "account": {
+        "chatUrl": "http://{HOST}:11434/v1/chat/completions",
+        "auth": "none"
+      }
+    },
+    {
+      "id": "lm-studio",
+      "name": "LM Studio（自己的電腦）",
+      "description": "模型跑在你自己的電腦上。LM Studio 要開啟伺服器和「Serve on Local Network」；建好後到「AI 模型」頁按「從 API 更新清單」選模型。",
+      "guide": "https://weavenote.easier.tw/custom-ai/#lm-studio",
+      "fields": {
+        "HOST": "電腦的區域網路 IP（例如 192.168.1.20）"
+      },
+      "account": {
+        "chatUrl": "http://{HOST}:1234/v1/chat/completions",
+        "auth": "none"
+      }
+    },
+    {
+      "id": "azure-openai",
+      "name": "Azure OpenAI",
+      "description": "公司的 Azure OpenAI 資源。模型名稱要填部署名稱。",
+      "guide": "https://weavenote.easier.tw/custom-ai/#azure",
+      "fields": {
+        "RESOURCE": "資源名稱（xxx.openai.azure.com 的 xxx）",
+        "DEPLOYMENT": "部署名稱（deployment name）",
+        "API_KEY": "API Key（入口網站的「金鑰與端點」）"
+      },
+      "account": {
+        "chatUrl": "https://{RESOURCE}.openai.azure.com/openai/v1/chat/completions",
+        "auth": "header",
+        "authHeader": "api-key",
+        "apiKey": "{API_KEY}",
+        "chatModels": ["{DEPLOYMENT}"]
+      }
+    }
+  ]
+}
