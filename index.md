@@ -15,7 +15,7 @@ layout: bilingual
   - **本地 Whisper**（在裝置上執行，模型下載一次之後就能完全離線）。
   - **雲端 STT**：OpenAI Whisper、Groq、Google Gemini 或 AWS Bedrock Nova，使用你自己的 API 金鑰。
 - **AI 整理**（選用的後製整理）：把逐字稿送到 OpenAI／Groq／Gemini／Claude／Bedrock 整理、摘要或改寫格式，同樣使用你自己的 API 金鑰。
-- **Webhooks**：把錄音和／或逐字稿 POST 到你設定的任何網址（每一段完成時，或整則筆記完成時）。
+- **同步到其他 App**：筆記完成後，自動把摘要和逐字稿送到 Discord 的文字頻道或論壇頻道；之後改了逐字稿、標題或摘要，會直接更新原本那則訊息。也可以把錄音和／或逐字稿 POST 到你設定的任何網址（webhook）。
 - **Discord 語音筆記**：讓我們的 bot 加入 Discord 語音頻道，每位說話者的聲音會分段傳到 App、標上他們的 Discord 名稱，再由 App 用你選擇的服務轉成文字。[把 bot 加進你的伺服器](/discord/)。
 - **自訂詞彙**：把專有名詞提供給 STT 服務，讓人名和術語寫對。
 - **匯入錄音**：把音訊檔或影片的聲音變成一則筆記。
@@ -56,7 +56,7 @@ A minimal voice-note app for Android and iOS (iPhone and iPad): hit record, get 
   - **Local Whisper** (on-device, fully offline after the model downloads once).
   - **Cloud STT** — OpenAI Whisper, Groq, Google Gemini, or AWS Bedrock Nova, using your own API key.
 - **AI 整理** (optional post-processing) — send the transcript to OpenAI / Groq / Gemini / Claude / Bedrock to clean it up, summarise, or reformat. Again, your own API key.
-- **Webhooks** — POST the audio and/or transcript to any URL you configure (per-segment or when the note is finalised).
+- **Sync to other apps** — when a note is finished, its summary and transcript are sent to a Discord text or forum channel, and later changes to the transcript, title or summary update those messages in place. You can also POST the audio and/or transcript to any URL you configure (a webhook).
 - **Discord voice notes** — have our bot join a Discord voice channel; each speaker's audio reaches the app as separate segments labelled with their Discord name, and the app transcribes them with the provider you chose. [Add the bot to your server](/discord/).
 - **Vocabulary groups** — feed domain-specific terms to the STT provider so names and jargon come out right.
 - **Import recordings** — turn an audio file, or a video's soundtrack, into a note.
