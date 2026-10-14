@@ -6,3 +6,9 @@ locale: zh_TW
 markdown: kramdown
 theme: minima
 
+# Link previews (og:image) on every page: the home page banner.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/banner-zh.jpg

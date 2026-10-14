@@ -2,9 +2,31 @@
 layout: bilingual
 ---
 
+<style>
+  .wn-banner { display: block; width: 100%; height: auto; border-radius: 12px; margin-bottom: 24px; }
+  .wn-visually-hidden {
+    position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .wn-stores { display: grid; grid-template-columns: repeat(2, minmax(0, 200px)); gap: 16px; }
+  .wn-store {
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 14px 14px 12px; border: 1px solid #e0e0e0; border-radius: 12px;
+    color: #111 !important; text-decoration: none !important;
+  }
+  .wn-store:hover { border-color: #2a7a78; box-shadow: 0 2px 10px rgba(42, 122, 120, .18); }
+  .wn-store img { width: 100%; max-width: 160px; height: auto; margin-bottom: 8px; }
+  .wn-store span { font-size: 14px; color: #666; }
+  .wn-stores-hint { margin-top: 10px; font-size: 14px; color: #666; }
+</style>
+
+<img class="wn-banner lang-zh" src="/assets/banner-zh.jpg" width="2048" height="1000" loading="lazy" alt="WeaveNote：段落式語音筆記，邊錄邊轉文字，AI 幫你整理重點">
+<img class="wn-banner lang-en" src="/assets/banner-en.jpg" width="2048" height="1000" loading="lazy" alt="WeaveNote: voice notes in segments, transcribed as you record, tidied up by AI">
+
 <div class="lang-zh" lang="zh-Hant" markdown="1">
 
 # WeaveNote
+{: .wn-visually-hidden}
 
 極簡的語音筆記 App，支援 Android 和 iOS（iPhone 與 iPad）：按下錄音，就能得到乾淨的逐字稿，也可以讓 LLM 幫你整理。由 **easierlife**（台灣）發行。
 
@@ -32,8 +54,7 @@ App 透過 Google AdMob 顯示橫幅廣告，以維持免費。詳情請見隱�
 
 ## 下載
 
-- **Google Play**：<https://play.google.com/store/apps/details?id=com.easierlife.weavenote>
-- **App Store**：<https://apps.apple.com/tw/app/weavenote/id6765639488>
+{% include store-links.html lang="zh" %}
 
 ## 連結
 
@@ -46,6 +67,7 @@ App 透過 Google AdMob 顯示橫幅廣告，以維持免費。詳情請見隱�
 <div class="lang-en" lang="en" markdown="1">
 
 # WeaveNote
+{: .wn-visually-hidden}
 
 A minimal voice-note app for Android and iOS (iPhone and iPad): hit record, get a clean transcript, optionally let an LLM tidy it up. Published by **easierlife** (Taiwan).
 
@@ -73,8 +95,7 @@ The app shows banner ads via Google AdMob to keep it free. See the privacy polic
 
 ## Get it
 
-- **Google Play**: <https://play.google.com/store/apps/details?id=com.easierlife.weavenote>
-- **App Store**: <https://apps.apple.com/tw/app/weavenote/id6765639488>
+{% include store-links.html lang="en" %}
 
 ## Links
 
