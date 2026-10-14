@@ -38,6 +38,7 @@ layout: bilingual
   - **雲端 STT**：OpenAI Whisper、Groq、Google Gemini 或 AWS Bedrock Nova，使用你自己的 API 金鑰。
 - **AI 整理**（選用的後製整理）：把逐字稿送到 OpenAI／Groq／Gemini／Claude／Bedrock 整理、摘要或改寫格式，同樣使用你自己的 API 金鑰。其他支援 OpenAI 相容格式的服務（Cloudflare Workers AI、OpenRouter、自己電腦上的 Ollama 等）也能接，App 裡有現成的範本：[自定 AI 帳號設定說明](/custom-ai/)。
 - **同步到其他 App**：筆記完成後，自動把摘要和逐字稿送到 Discord 的文字頻道或論壇頻道；之後改了逐字稿、標題或摘要，會直接更新原本那則訊息。也可以把錄音和／或逐字稿 POST 到你設定的任何網址（webhook）。
+- **LINE 群組會議記錄**：把 WeaveNote 官方帳號邀進 LINE 群組，群組就有一個只有成員打得開的「會議記錄」頁面。你選擇同步的筆記，摘要和逐字稿會自動放上去，之後修改也會跟著更新，大家在 LINE 裡就能看。在群組裡 @WeaveNote 拿到連結，打開後複製「我的上傳網址」，貼到 App 的「同步到其他 App」→「LINE 群組會議記錄」就能開始。
 - **Discord 語音筆記**：讓我們的 bot 加入 Discord 語音頻道，每位說話者的聲音會分段傳到 App、標上他們的 Discord 名稱，再由 App 用你選擇的服務轉成文字。[把 bot 加進你的伺服器](/discord/)。
 - **自訂詞彙**：把專有名詞提供給 STT 服務，讓人名和術語寫對。
 - **匯入錄音**：把音訊檔或影片的聲音變成一則筆記。
@@ -46,7 +47,7 @@ layout: bilingual
 
 ## 不做的事
 
-- **沒有存放筆記的後端。**錄音、逐字稿、設定和 API 金鑰都在你的裝置上。我們唯一營運的伺服器，是選用的 Discord 語音功能背後的 bot：它把 Discord 的語音轉送給 App，並在 24 小時內刪除。
+- **筆記留在你的裝置上。**錄音、逐字稿、設定和 API 金鑰都在你的裝置上。我們的伺服器只用在兩個選用功能：Discord 語音筆記（把 Discord 的語音轉送給 App，24 小時內刪除），以及 LINE 群組會議記錄（只存你選擇同步到群組的筆記文字，不含錄音，保留到筆記被刪除為止）。
 - **沒有分析 SDK。**沒有 Firebase Analytics、Crashlytics 或 Sentry。
 - **不用帳號。**不需要註冊，也不需要登入。
 
@@ -79,6 +80,7 @@ A minimal voice-note app for Android and iOS (iPhone and iPad): hit record, get 
   - **Cloud STT** — OpenAI Whisper, Groq, Google Gemini, or AWS Bedrock Nova, using your own API key.
 - **AI 整理** (optional post-processing) — send the transcript to OpenAI / Groq / Gemini / Claude / Bedrock to clean it up, summarise, or reformat. Again, your own API key. Any other OpenAI-compatible service (Cloudflare Workers AI, OpenRouter, Ollama on your own computer, …) works too, with ready-made templates in the app: [setting up a custom AI account](/custom-ai/?lang=en).
 - **Sync to other apps** — when a note is finished, its summary and transcript are sent to a Discord text or forum channel, and later changes to the transcript, title or summary update those messages in place. You can also POST the audio and/or transcript to any URL you configure (a webhook).
+- **LINE group meeting records** — add the WeaveNote official account to a LINE group and the group gets a 會議記錄 (meeting records) page that only its members can open. The summaries and transcripts of the notes you choose to sync are posted there and kept up to date when you edit them, so everyone can read them right inside LINE. Mention @WeaveNote in the group to get the link, open it, copy 我的上傳網址 (your upload URL) and paste it into the app under 同步到其他 App → LINE 群組會議記錄.
 - **Discord voice notes** — have our bot join a Discord voice channel; each speaker's audio reaches the app as separate segments labelled with their Discord name, and the app transcribes them with the provider you chose. [Add the bot to your server](/discord/).
 - **Vocabulary groups** — feed domain-specific terms to the STT provider so names and jargon come out right.
 - **Import recordings** — turn an audio file, or a video's soundtrack, into a note.
@@ -87,7 +89,7 @@ A minimal voice-note app for Android and iOS (iPhone and iPad): hit record, get 
 
 ## What it doesn't do
 
-- **No backend for your notes.** Recordings, transcripts, settings, and API keys live on your device. The only server we run is the bot behind the optional Discord voice feature, which relays Discord audio to the app and deletes it within 24 hours.
+- **Your notes stay on your device.** Recordings, transcripts, settings, and API keys live on your device. Our server is used by two optional features only: Discord voice notes (it relays Discord audio to the app and deletes it within 24 hours) and LINE group meeting records (it keeps the text of the notes you choose to sync to a group, never audio, until they're deleted).
 - **No analytics SDK.** No Firebase Analytics, no Crashlytics, no Sentry.
 - **No account.** No sign-up, no login.
 

@@ -9,7 +9,7 @@ title_en: Privacy Policy
 
 # WeaveNote 隱私權政策
 
-**最後更新：2026-10-12**
+**最後更新：2026-10-14**
 
 WeaveNote（以下稱「**我們**」、「**本 App**」）由 **easierlife**（個人品牌，台灣；<shiaukai@gmail.com>）發行。本頁說明 App 會處理哪些資料、資料會送到哪裡，以及你有哪些選擇。這個 App 刻意只收集最少的資料，所以我們盡量寫得簡短、具體。
 
@@ -33,11 +33,11 @@ WeaveNote（以下稱「**我們**」、「**本 App**」）由 **easierlife**�
 
 **匯入和分享錄音。**你可以匯入音訊或影片檔（匯入錄音檔），或從其他 App 把檔案分享給 WeaveNote，例如 LINE 的語音訊息。檔案會在你的裝置上讀取和轉檔；影片只會用到聲音，畫面不會離開裝置。分享的檔案會開啟**分享卡片**，在你分享的那個 App 上方顯示逐字稿：它會把音訊送到你選擇的雲端 STT 服務商（第 2 節第 1 項），只有在你按「校稿」時才會把逐字稿送到你的 LLM 服務商（第 2 節第 2 項）；除非你按「存成筆記」，否則什麼都不保留；關閉卡片就會刪除暫存複本。在 Android 上，卡片會得知是哪個 App 分享了檔案，並把那個 App 的名稱用在筆記標題；除此之外不會從那個 App 收到任何東西（沒有聊天內容、傳送者或聯絡人資料）。在 iOS 上，卡片是 App 內附的分享延伸功能，只會使用雲端 STT 服務商。
 
-**我們只營運一台伺服器，而且只用於 Discord 語音功能**（第 2 節第 5 項）。它把 Discord 的語音轉送給 App，最多保留 24 小時。你的麥克風錄音、逐字稿、摘要和設定都不會送到這台伺服器；如果你不使用 Discord 功能，App 完全不會連線到它。
+**我們只營運一台伺服器，用在兩個選用功能**：Discord 語音筆記和 LINE 群組會議記錄（第 2 節第 5、6 項）。Discord 方面，它把 Discord 的語音轉送給 App，最多保留 24 小時。LINE 方面，它保存你選擇同步到群組的筆記（只有文字，不含錄音），直到筆記被刪除。你的麥克風錄音和設定都不會送到這台伺服器，沒有同步到 LINE 群組的筆記也不會；兩個功能都不用的話，App 完全不會連線到它。跟大多數網站伺服器一樣，它會記錄每個請求和請求來源的 IP 位址。
 
 ## 2. 哪些資料會離開你的裝置，送給誰
 
-你的錄音和逐字稿只會送到**你自己設定**的服務；使用 Discord 語音功能時，還會經過我們的 Discord bot：
+你的錄音和逐字稿只會送到**你自己設定**的服務；使用 Discord 語音功能，或把筆記同步到 LINE 群組時，還會送到我們的伺服器：
 
 1. **你選擇的雲端 STT（語音轉文字）服務商。**如果你選擇 OpenAI Whisper、Groq、Gemini 或 AWS Bedrock Nova，你的錄音（或你匯入、分享的檔案的音訊，或其中一段）會用**你自己的** API 金鑰，透過 HTTPS 送到該服務商的 API。如果你為其他 OpenAI 相容服務建立「自定」AI 帳號（例如 Cloudflare Workers AI、OpenRouter，或跑在你自己電腦上的模型），則會送到你替那個帳號填的位址，並適用該服務自己的政策。內建服務商的隱私權政策：
    - OpenAI：<https://openai.com/policies/privacy-policy>
@@ -58,18 +58,31 @@ WeaveNote（以下稱「**我們**」、「**本 App**」）由 **easierlife**�
    - bot 的伺服器紀錄會記下技術事件（Discord 伺服器、頻道和使用者 ID、顯示名稱、時間），用來維持服務運作和修正問題。紀錄中沒有音訊，也沒有逐字稿。
 
    bot 在頻道中時，會出現在頻道的成員列表。你錄的是別人的聲音，請先告訴他們。你對 Discord 的使用適用 Discord 的隱私權政策：<https://discord.com/privacy>。
-6. **Firebase App Check（Google／Apple）。**為了只讓正版的 WeaveNote 能開始 Discord 接收，App 使用 Firebase App Check。開始 Discord 語音筆記時，App 會請 Google Play Integrity（Android）或 Apple App Attest（iOS）確認這是在真實裝置上、未經修改的 WeaveNote，從 Firebase 取得一次性的權杖，再把權杖送給我們的 bot，由 bot 向 Firebase 驗證。Google 和 Apple 會依各自的政策收到裝置完整性的訊號（<https://firebase.google.com/support/privacy>、<https://www.apple.com/legal/privacy/>）。這個權杖不包含你的錄音、逐字稿或其他內容。
-7. **Google AdMob。**App 會顯示橫幅廣告。AdMob 的 SDK 會依 <https://policies.google.com/technologies/ads> 收集裝置層級的訊號來投放廣告（廣告 ID、IP、作業系統版本等）。我們不會把你的錄音、逐字稿或任何個人內容傳給 AdMob。
-8. **本網站的設定範本。**你打開「從官網範本建立」時，App 會從本網站（`weavenote.easier.tw`，架在 GitHub Pages 上）下載範本清單。就像開任何網頁一樣，這個請求會帶有你的 IP 位址；除此之外不含任何關於你的資料，也不含你的金鑰、錄音或逐字稿。
+6. **我們的 LINE 群組會議記錄。**這是我們唯一會在伺服器上保存你筆記的地方，而且只有你使用時才會。
+   - **會議記錄頁面。**有人把 WeaveNote 官方帳號邀進 LINE 群組，並在群組裡 @WeaveNote 時，它會回覆這個群組「會議記錄」頁面的連結。它不會儲存群組的聊天訊息，沒有 @ 它的訊息一律忽略。打開頁面要用 LINE 登入（LINE Login），LINE 會把你的 LINE 使用者 ID、顯示名稱和大頭貼交給我們的伺服器（`weavenote.life.easier.tw`），伺服器再向 LINE 確認你目前是不是這個群組的成員；只有目前的成員打得開。每位打開過頁面的成員，我們會保存他的 LINE 使用者 ID、顯示名稱、大頭貼網址和個人的上傳網址；群組則保存 LINE 群組 ID 和群組名稱。
+   - **App 上傳什麼。**只有在你把上傳網址貼到 App（「同步到其他 App」→「LINE 群組會議記錄」），並選擇把筆記同步到那裡時才會上傳：筆記的標題、摘要和逐字稿、說明、與會人（名字、角色和各自的發言時間）、會議時間和長度。**錄音一律不會上傳。**修改筆記後，新版本會取代舊版本。每次上傳都會附上 App Check 權杖（第 7 項）。上傳網址等於用你的身分上傳的權限，請不要給別人。
+   - **誰看得到。**群組目前的每一位成員，都看得到上傳到這個群組的筆記，以及上傳者的 LINE 顯示名稱。頁面直接從我們的伺服器讀取筆記，LINE 不會收到筆記內容。筆記存放在我們伺服器位於 Amazon Web Services（AWS）的資料庫中，沒有端對端加密，所以我們和代管伺服器的平台在技術上看得到；我們只會為了維持服務運作、修正問題或處理你的請求而查看。
+   - **保存多久。**沒有自動到期，筆記會一直保留到被刪除為止：
+     - 在 App 刪除筆記，或不再把它同步到這個群組，就會從我們的伺服器刪除。
+     - 上傳者也可以在頁面上刪除。刪除後內容會清空，只留下「已刪除」的紀錄（上傳者的 LINE 使用者 ID、App 裡的筆記代碼和時間），避免 App 再次上傳。
+     - 成員退出群組後，他的上傳網址會失效，但他上傳過的筆記和他的成員資料會保留。
+     - 官方帳號被移出群組後，所有上傳網址都會失效，但群組的筆記和成員資料會保留，再邀請回來時都還在。
+     - 自己無法刪除的資料（例如你已經退出群組），請寫信給我們（第 6 節）刪除。
+   - **伺服器紀錄。**伺服器會記錄技術事件，例如 LINE 群組 ID、筆記代碼、內容字數和錯誤，用來維持服務運作和修正問題。紀錄中沒有筆記的標題、內容、說明、與會人名字、LINE 顯示名稱或大頭貼。
 
-App 沒有內建任何第三方分析 SDK（沒有 Firebase Analytics、Crashlytics 或 Sentry）。App Check（第 6 項）是 App 唯一使用的 Firebase 服務。
+   群組裡的每個人都看得到你上傳的內容，請只同步可以讓整個群組看的筆記。你對 LINE 的使用適用 LINE 的隱私權政策：<https://line.me/zh-hant/terms/policy/>。
+7. **Firebase App Check（Google／Apple）。**為了只讓正版的 WeaveNote 能開始 Discord 接收、上傳到 LINE 群組會議記錄，App 使用 Firebase App Check。開始 Discord 語音筆記，或上傳筆記到 LINE 群組時，App 會請 Google Play Integrity（Android）或 Apple App Attest（iOS）確認這是在真實裝置上、未經修改的 WeaveNote，從 Firebase 取得一次性的權杖，再把權杖送給我們的伺服器，由伺服器向 Firebase 驗證。Google 和 Apple 會依各自的政策收到裝置完整性的訊號（<https://firebase.google.com/support/privacy>、<https://www.apple.com/legal/privacy/>）。這個權杖不包含你的錄音、逐字稿或其他內容。
+8. **Google AdMob。**App 會顯示橫幅廣告。AdMob 的 SDK 會依 <https://policies.google.com/technologies/ads> 收集裝置層級的訊號來投放廣告（廣告 ID、IP、作業系統版本等）。我們不會把你的錄音、逐字稿或任何個人內容傳給 AdMob。
+9. **本網站的設定範本。**你打開「從官網範本建立」時，App 會從本網站（`weavenote.easier.tw`，架在 GitHub Pages 上）下載範本清單。就像開任何網頁一樣，這個請求會帶有你的 IP 位址；除此之外不含任何關於你的資料，也不含你的金鑰、錄音或逐字稿。
+
+App 沒有內建任何第三方分析 SDK（沒有 Firebase Analytics、Crashlytics 或 Sentry）。App Check（第 7 項）是 App 唯一使用的 Firebase 服務。
 
 ## 3. 權限
 
 | 權限 | 用途 |
 |---|---|
 | `RECORD_AUDIO` | 核心功能：錄下你的語音筆記。 |
-| `INTERNET` | 把音訊／逐字稿送到**你設定**的 STT／LLM／webhook 服務、使用 Discord 語音功能時和我們的 Discord bot 連線，以及第一次使用時下載本地 Whisper 模型。AdMob 也會用到。 |
+| `INTERNET` | 把音訊／逐字稿送到**你設定**的 STT／LLM／webhook 服務、使用 Discord 語音功能或把筆記同步到 LINE 群組時和我們的伺服器連線，以及第一次使用時下載本地 Whisper 模型。AdMob 也會用到。 |
 | `POST_NOTIFICATIONS` | 顯示常駐的「錄音中」通知，讓作業系統在螢幕關閉時不會中止錄音。 |
 | `FOREGROUND_SERVICE`、`FOREGROUND_SERVICE_MICROPHONE`、`WAKE_LOCK` | 同上：讓錄音在背景持續進行。 |
 | `FOREGROUND_SERVICE_DATA_SYNC` | App 在背景時，讓 Discord 語音筆記繼續接收、AI 校稿繼續執行。 |
@@ -84,7 +97,8 @@ WeaveNote 不是以 13 歲以下的兒童為對象。我們不會在知情的情
 - **不使用雲端 STT／LLM**：在設定中改用「本地 Whisper」，讓錄音留在裝置上。（分享卡片一定會使用雲端服務商；請改從 App 內匯入檔案。）
 - **說明留白**：如果你不想讓逐字稿以外的內容送到 LLM 服務商。
 - **不使用 Discord 語音功能**：如果你不希望音訊經過我們的 bot。除非你開始 Discord 語音筆記，否則不會有任何資料送到 bot。
-- **刪除錄音或整則筆記**：在筆記詳情畫面刪除，錄音檔和逐字稿都會從裝置上移除。在 Android 上，資料庫備份會在下一次備份時更新，所以在那之前，已刪除筆記的文字可能還留在備份中。我們 bot 儲存空間裡的 Discord 音訊，無論如何都會在 24 小時內刪除。
+- **不把筆記同步到 LINE 群組**：如果你不希望筆記保存在我們的伺服器。除非你在「同步到其他 App」加入 LINE 群組會議記錄，並讓筆記同步到那裡，否則不會有任何筆記送到伺服器。
+- **刪除錄音或整則筆記**：在筆記詳情畫面刪除，錄音檔和逐字稿都會從裝置上移除。在 Android 上，資料庫備份會在下一次備份時更新，所以在那之前，已刪除筆記的文字可能還留在備份中。我們 bot 儲存空間裡的 Discord 音訊，無論如何都會在 24 小時內刪除。如果筆記有同步到 LINE 群組，App 也會請伺服器把它從群組的會議記錄刪除；如果沒有成功（例如當時沒有網路），請到群組的會議記錄頁面刪除，或寫信給我們。
 - **清除錯誤紀錄**：「工程模式 → 錯誤紀錄 → 清除」，或在系統設定中清除 App 的快取。
 - **重設 App**：解除安裝 WeaveNote。在 iOS 上會移除所有 App 資料。在 Android 上會移除 App 的私有資料（逐字稿、設定、儲存的 API 金鑰、錯誤紀錄），但**不會**移除存放錄音檔和資料庫備份的媒體資料夾 `/sdcard/Android/media/com.easierlife.weavenote/`；要一併移除，請用檔案管理工具刪除這個資料夾。
 - **停用個人化廣告**：Android 設定 → 隱私權 → 廣告 →「刪除廣告 ID」。iOS 不需要另外設定：App 不會跟你要求「允許追蹤」的權限（App 追蹤透明度），所以 AdMob 拿不到你裝置的廣告識別碼。
@@ -103,7 +117,7 @@ WeaveNote 不是以 13 歲以下的兒童為對象。我們不會在知情的情
 
 # WeaveNote Privacy Policy
 
-**Last updated: 2026-10-12**
+**Last updated: 2026-10-14**
 
 WeaveNote ("**we**", "**the app**") is published by **easierlife** (個人品牌, Taiwan; <shiaukai@gmail.com>). This page explains what data the app handles, where it goes, and what choices you have. We try to keep it short and concrete because the app is intentionally minimal in what it collects.
 
@@ -127,11 +141,11 @@ This policy is also available in Traditional Chinese (中文); if the two versio
 
 **Importing and sharing recordings.** You can import an audio or video file (匯入錄音檔), or share one to WeaveNote from another app, for example a LINE voice message. The file is read and converted on your device; for a video only the soundtrack is used, and the picture never leaves the device. A shared file opens the **share card**, which shows the transcript over the app you shared from: it sends the audio to the cloud STT provider you chose (§2, item 1) — and the transcript to your LLM provider (§2, item 2) only if you tap 校稿 — and keeps nothing unless you tap 存成筆記 — closing the card deletes its temporary copy. On Android the card is told which app shared the file and uses that app's name in the note's title; it receives nothing else from that app (no chat, sender or contact details). On iOS the card is a share extension that's part of the app, and it only uses cloud STT providers.
 
-**We run one server, and only for the Discord voice feature** (§2, item 5). It relays Discord voice audio to the app and keeps it for at most 24 hours. Your microphone recordings, transcripts, summaries and settings never go to it, and if you don't use the Discord feature the app doesn't contact it at all.
+**We run one server, for two optional features**: Discord voice notes and LINE group meeting records (§2, items 5 and 6). For Discord, it relays voice audio to the app and keeps it for at most 24 hours. For LINE, it keeps the notes you choose to sync to a group (their text, never audio) until they're deleted. Your microphone recordings and settings never go to it, nor does any note you don't sync to a LINE group; if you use neither feature, the app doesn't contact it at all. Like most web servers, it logs each request with the IP address it came from.
 
 ## 2. What gets sent off your device, and to whom
 
-Your recordings and transcripts only go to services **you yourself configure**, and through our Discord bot if you use the Discord voice feature:
+Your recordings and transcripts only go to services **you yourself configure**, and to our server if you use the Discord voice feature or sync notes to a LINE group:
 
 1. **The cloud STT provider you choose.** If you select OpenAI Whisper, Groq, Gemini, or AWS Bedrock Nova, your recording — or the audio of a file you import or share — (or a chunk of it) is sent over HTTPS to that provider's API using **your own** API key. If you set up a 自定 (custom) AI account for any other OpenAI-compatible service — such as Cloudflare Workers AI, OpenRouter, or a model running on your own computer — it goes to the address you entered for that account instead, and that service's own policy applies. The built-in providers' privacy policies:
    - OpenAI: <https://openai.com/policies/privacy-policy>
@@ -152,18 +166,31 @@ Your recordings and transcripts only go to services **you yourself configure**, 
    - The bot's server logs record technical events (Discord server, channel and user IDs, display names, timestamps) to keep the service running and fix problems. They contain no audio and no transcripts.
 
    The bot shows up in the channel's member list while it's there. You're recording other people, so let them know. Your use of Discord is covered by Discord's privacy policy: <https://discord.com/privacy>.
-6. **Firebase App Check (Google / Apple).** So that only genuine copies of WeaveNote can start Discord sessions, the app uses Firebase App Check. When you start a Discord voice note, the app asks Google Play Integrity (Android) or Apple App Attest (iOS) to confirm it's an unmodified copy of WeaveNote on a genuine device, receives a single-use token from Firebase, and sends that token to our bot, which verifies it with Firebase. Google and Apple receive device-integrity signals for this under their own policies (<https://firebase.google.com/support/privacy>, <https://www.apple.com/legal/privacy/>). The token carries none of your recordings, transcripts or other content.
-7. **Google AdMob.** The app shows banner ads. AdMob's SDK collects device-level signals to serve ads (ad ID, IP, OS version, etc.) according to <https://policies.google.com/technologies/ads>. We do not transmit your recordings, transcripts, or any personal content to AdMob.
-8. **Setup templates from this website.** When you open 從官網範本建立 (create from a website template), the app downloads the template list from this website (`weavenote.easier.tw`, hosted on GitHub Pages). Like loading any web page, the request carries your IP address; nothing else about you, and none of your keys, recordings or transcripts.
+6. **Our LINE group meeting records (LINE 群組會議記錄).** This is the only place where we keep your notes on our server, and only if you use it.
+   - **The page.** When someone adds the WeaveNote official account to a LINE group and mentions @WeaveNote there, it replies with a link to the group's 會議記錄 (meeting records) page. It doesn't store the group's chat messages, and ignores every message that doesn't mention it. Opening the page means signing in with LINE (LINE Login): LINE gives our server (`weavenote.life.easier.tw`) your LINE user ID, display name and profile picture, and our server asks LINE whether you're currently a member of the group; only current members can open it. For each member who has opened the page we keep their LINE user ID, display name, profile picture URL and personal upload URL; for the group, its LINE group ID and name.
+   - **What the app uploads.** Only if you paste your upload URL into the app (同步到其他 App → LINE 群組會議記錄) and choose to sync a note there: the note's title, summaries and transcript, 說明, 與會人 (names, roles and how long each spoke), meeting time and length. **Audio is never uploaded.** When you edit the note, the new version replaces the old one. Each upload carries an App Check token (item 7). Anyone who has your upload URL can upload as you, so don't share it.
+   - **Who can see it.** Every current member of the group can read the notes uploaded to it, along with the uploader's LINE display name. The page loads them straight from our server; LINE doesn't receive their content. They're stored in our server's database on Amazon Web Services (AWS), not end-to-end encrypted, so we and the platform that hosts our server can technically access them; we look at them only to run the service, fix problems, or handle your requests.
+   - **How long it's kept.** There's no automatic expiry: a note stays until it's deleted.
+     - Deleting the note in the app, or no longer syncing it to that group, deletes it from our server.
+     - The uploader can also delete it on the page. Its content is then erased, and we keep only a record that it was deleted (the uploader's LINE user ID, the app's ID for the note, and times) so the app doesn't upload it again.
+     - When a member leaves the group, their upload URL stops working, but the notes they uploaded and their member record stay.
+     - If the official account is removed from the group, every upload URL stops working, but the group's notes and member records are kept, and are there again if it's invited back.
+     - To have anything deleted that you can't delete yourself (for example after you've left the group), email us (§6).
+   - **Server logs.** The server records technical events, such as LINE group IDs, note IDs, content length and errors, to keep the service running and fix problems. They contain no note titles, content, 說明, attendee names, LINE display names or profile pictures.
 
-We do not bundle any third-party analytics SDK (no Firebase Analytics, no Crashlytics, no Sentry). App Check (item 6) is the only Firebase service the app uses.
+   Everyone in the group can read what you upload, so only sync notes the whole group may see. Your use of LINE is covered by LINE's privacy policy: <https://line.me/en/terms/policy/>.
+7. **Firebase App Check (Google / Apple).** So that only genuine copies of WeaveNote can start Discord sessions and upload to LINE groups' meeting records, the app uses Firebase App Check. When you start a Discord voice note or upload a note to a LINE group, the app asks Google Play Integrity (Android) or Apple App Attest (iOS) to confirm it's an unmodified copy of WeaveNote on a genuine device, receives a single-use token from Firebase, and sends that token to our server, which verifies it with Firebase. Google and Apple receive device-integrity signals for this under their own policies (<https://firebase.google.com/support/privacy>, <https://www.apple.com/legal/privacy/>). The token carries none of your recordings, transcripts or other content.
+8. **Google AdMob.** The app shows banner ads. AdMob's SDK collects device-level signals to serve ads (ad ID, IP, OS version, etc.) according to <https://policies.google.com/technologies/ads>. We do not transmit your recordings, transcripts, or any personal content to AdMob.
+9. **Setup templates from this website.** When you open 從官網範本建立 (create from a website template), the app downloads the template list from this website (`weavenote.easier.tw`, hosted on GitHub Pages). Like loading any web page, the request carries your IP address; nothing else about you, and none of your keys, recordings or transcripts.
+
+We do not bundle any third-party analytics SDK (no Firebase Analytics, no Crashlytics, no Sentry). App Check (item 7) is the only Firebase service the app uses.
 
 ## 3. Permissions
 
 | Permission | Why |
 |---|---|
 | `RECORD_AUDIO` | Core: capturing your voice notes. |
-| `INTERNET` | Sending audio/transcripts to the STT/LLM/webhook services **you configure**, talking to our Discord bot when you use the Discord voice feature, and downloading the local Whisper model on first use. Also used by AdMob. |
+| `INTERNET` | Sending audio/transcripts to the STT/LLM/webhook services **you configure**, talking to our server when you use the Discord voice feature or sync notes to a LINE group, and downloading the local Whisper model on first use. Also used by AdMob. |
 | `POST_NOTIFICATIONS` | Showing the persistent "recording in progress" notification so the OS doesn't kill recording when the screen is off. |
 | `FOREGROUND_SERVICE`, `FOREGROUND_SERVICE_MICROPHONE`, `WAKE_LOCK` | Same — keeps the recording alive in the background. |
 | `FOREGROUND_SERVICE_DATA_SYNC` | Keeps a Discord voice note receiving, and AI 校稿 running, while the app is in the background. |
@@ -178,7 +205,8 @@ WeaveNote is not directed at children under 13. We do not knowingly collect data
 - **Stop using cloud STT/LLM**: switch to "本地 Whisper" in settings to keep recordings on-device. (The share card always uses a cloud provider; import the file from inside the app instead.)
 - **Leave the 說明 empty** if you don't want anything beyond the transcript sent to your LLM provider.
 - **Don't use the Discord voice feature** if you don't want audio to pass through our bot. Nothing is sent to it unless you start a Discord voice note.
-- **Delete a recording or the entire note**: delete it from the note detail screen — both the audio file and transcript are removed from the device. On Android, the database backup is refreshed the next time a backup runs, so a deleted note's text can stay in the backup until then. Discord audio on our bot's storage is deleted within 24 hours either way.
+- **Don't sync notes to a LINE group** if you don't want them kept on our server. No note goes there unless you add a LINE group meeting record under 同步到其他 App and the note syncs to it.
+- **Delete a recording or the entire note**: delete it from the note detail screen — both the audio file and transcript are removed from the device. On Android, the database backup is refreshed the next time a backup runs, so a deleted note's text can stay in the backup until then. Discord audio on our bot's storage is deleted within 24 hours either way. If the note was synced to a LINE group, the app also asks our server to delete it from the group's meeting records; if that fails (for example while you're offline), delete it on the group's page or email us.
 - **Clear the error log**: 工程模式 → 錯誤紀錄 → 清除, or clear the app's cache in the system settings.
 - **Reset the app**: uninstall WeaveNote. On iOS this removes all app data. On Android it removes the app's private data (transcripts, settings, stored API keys, error log) but **not** the media folder `/sdcard/Android/media/com.easierlife.weavenote/` with your audio files and database backup; delete that folder with a file manager to remove them too.
 - **Opt out of personalised ads**: Android Settings → Privacy → Ads → "Delete advertising ID". On iOS there's nothing to switch off: the app never asks for permission to track you (App Tracking Transparency), so AdMob doesn't get your device's advertising identifier.
