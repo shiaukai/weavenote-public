@@ -3,9 +3,17 @@ layout: default
 ---
 {%- comment -%}
   Minima's page layout without the title header: each page writes its own
-  heading in both languages.
+  heading in each of its languages (front matter `langs`; see
+  _includes/lang-select.html). When the language asked for isn't one of them, a
+  note says which language is shown instead.
 {%- endcomment -%}
 <style>
+  .wn-lang-note {
+    display: none; margin-bottom: 20px; padding: 8px 12px;
+    background: #f3f7f7; border-radius: 6px; font-size: 14px; color: #555;
+  }
+  html[data-want-lang="zh-Hans"]:not([data-lang="zh-Hans"]) .wn-lang-note[lang="zh-Hans"],
+  html[data-want-lang="ja"]:not([data-lang="ja"]) .wn-lang-note[lang="ja"] { display: block; }
   /* Long paths and URLs would otherwise run off a phone screen, and in a
      table squeeze the first column to a few characters, which Chinese then
      wraps one character per line. */
@@ -15,6 +23,8 @@ layout: default
 </style>
 <article class="post">
   <div class="post-content">
+    <p class="wn-lang-note" lang="zh-Hans">本页暂无简体中文版，以下显示繁体中文。</p>
+    <p class="wn-lang-note" lang="ja">このページは日本語に対応していないため、英語で表示しています。</p>
     {{ content }}
   </div>
 </article>

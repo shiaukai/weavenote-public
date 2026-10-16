@@ -1,9 +1,23 @@
 {%- comment -%}
   The two store QR codes on the home page; each one links to its store too.
-  usage: {% include store-links.html lang="zh" %} (or lang="en")
+  usage: {% include store-links.html lang="zh" %} (or "zh-Hans", "en", "ja")
   The QRs (assets/qr-*.svg) were made with macOS CoreImage's CIQRCodeGenerator
   and hold exactly the hrefs below. If a store link changes, make a new QR.
 {%- endcomment -%}
+{%- case include.lang -%}
+  {%- when "zh-Hans" -%}
+    {%- assign ipad = "iPhone 和 iPad" -%}
+    {%- assign hint = "用手机扫描二维码，或直接点击前往商店。" -%}
+  {%- when "en" -%}
+    {%- assign ipad = "iPhone and iPad" -%}
+    {%- assign hint = "Scan a code with your phone, or tap it to open the store." -%}
+  {%- when "ja" -%}
+    {%- assign ipad = "iPhone・iPad" -%}
+    {%- assign hint = "スマートフォンで QR コードを読み取るか、タップしてストアを開いてください。" -%}
+  {%- else -%}
+    {%- assign ipad = "iPhone 與 iPad" -%}
+    {%- assign hint = "用手機掃描 QR code，或直接點選前往商店。" -%}
+{%- endcase -%}
 <div class="wn-stores">
 <a class="wn-store" href="https://play.google.com/store/apps/details?id=com.easierlife.weavenote">
 <img src="{{ "/assets/qr-google-play.svg" | relative_url }}" width="160" height="160" alt="QR code">
@@ -13,7 +27,7 @@
 <a class="wn-store" href="https://apps.apple.com/tw/app/weavenote/id6765639488">
 <img src="{{ "/assets/qr-app-store.svg" | relative_url }}" width="160" height="160" alt="QR code">
 <strong>App Store</strong>
-<span>{% if include.lang == "en" %}iPhone and iPad{% else %}iPhone 與 iPad{% endif %}</span>
+<span>{{ ipad }}</span>
 </a>
 </div>
-<p class="wn-stores-hint">{% if include.lang == "en" %}Scan a code with your phone, or tap it to open the store.{% else %}用手機掃描 QR code，或直接點選前往商店。{% endif %}</p>
+<p class="wn-stores-hint">{{ hint }}</p>

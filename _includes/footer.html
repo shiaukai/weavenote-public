@@ -1,4 +1,4 @@
-{%- comment -%} Minima 2.5's footer, trimmed, with the description in both languages. {%- endcomment -%}
+{%- comment -%} Minima 2.5's footer, trimmed, with the description in each language. {%- endcomment -%}
 <footer class="site-footer h-card">
   <data class="u-url" href="{{ "/" | relative_url }}"></data>
   <div class="wrapper">
@@ -12,7 +12,7 @@
       </div>
       <div class="footer-col footer-col-2"></div>
       <div class="footer-col footer-col-3">
-        <p><span class="lang-zh">{{ site.description | escape }}</span><span class="lang-en">{{ site.description_en | escape }}</span></p>
+        <p><span class="lang-zh">{{ site.description | escape }}</span><span class="lang-zh-hans">{{ site.description_zh_hans | escape }}</span><span class="lang-en">{{ site.description_en | escape }}</span><span class="lang-ja">{{ site.description_ja | escape }}</span></p>
       </div>
     </div>
   </div>

@@ -1,40 +1,36 @@
 {%- comment -%}
-  Minima 2.5's header, with fixed links and the 中文 / English switch.
-
-  Every page (layout: bilingual) has both languages: blocks marked class="lang-zh" or
-  class="lang-en" (markdown="1" so kramdown still renders them). Chinese
-  is the default; ?lang=en switches to English, and links within the site
-  then keep ?lang=en. This runs at the top of <body>, before any of that
-  content is drawn, so the other language never flashes up.
+  Minima 2.5's header, with fixed links and the language menu. Which language
+  shows, and what the menu marks as current, is decided in
+  _includes/lang-select.html; picking one here is remembered there too.
 {%- endcomment -%}
 <style>
-  html:not([data-lang="en"]) .lang-en,
-  html[data-lang="en"] .lang-zh { display: none !important; }
   .site-title img {
     width: 30px; height: 30px; border-radius: 7px;
     margin-right: 10px; vertical-align: -6px;
   }
+  .wn-lang { display: inline-block; position: relative; }
+  .site-nav .wn-lang > summary { margin-right: 0; cursor: pointer; list-style: none; }
+  .wn-lang > summary::-webkit-details-marker { display: none; }
+  .wn-lang > summary svg { vertical-align: -3px; margin-right: 4px; }
+  .wn-lang > summary::after { content: "▾"; margin-left: 4px; font-size: 12px; color: #828282; }
+  .wn-lang ul {
+    position: absolute; right: 0; top: 100%; z-index: 10;
+    margin: 6px 0 0; padding: 6px 0; list-style: none;
+    background: #fdfdfd; border: 1px solid #e8e8e8; border-radius: 6px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
+    line-height: 1.5; white-space: nowrap; text-align: left;
+  }
+  .wn-lang li a { display: block; padding: 4px 18px; color: #111; }
+  .wn-lang li a[aria-current] { font-weight: 600; color: #2a7a78; }
+  @media screen and (max-width: 600px) {
+    .wn-lang { display: block; }
+    .wn-lang ul {
+      position: static; margin: 0; padding: 0 0 4px;
+      border: 0; box-shadow: none; background: none; text-align: right;
+    }
+    .wn-lang li a { padding: 4px 10px; }
+  }
 </style>
-<script>
-  (function () {
-    var en = new URLSearchParams(location.search).get('lang') === 'en';
-    var html = document.documentElement;
-    html.setAttribute('data-lang', en ? 'en' : 'zh');
-    if (!en) return;
-    html.lang = 'en';
-    var title = {{ page.title_en | jsonify }};
-    document.title = title ? title + ' | WeaveNote'
-        : 'WeaveNote | ' + {{ site.description_en | jsonify }};
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('a[href^="/"]').forEach(function (a) {
-        if (a.hasAttribute('data-lang-switch')) return;
-        var u = new URL(a.getAttribute('href'), location.origin);
-        u.searchParams.set('lang', 'en');
-        a.setAttribute('href', u.pathname + u.search + u.hash);
-      });
-    });
-  })();
-</script>
 <header class="site-header" role="banner">
   <div class="wrapper">
     <a class="site-title" rel="author" href="{{ "/" | relative_url }}"><img src="{{ "/assets/icon.svg" | relative_url }}" alt="">{{ site.title | escape }}</a>
@@ -49,9 +45,16 @@
       </label>
       <div class="trigger">
         <a class="page-link" href="{{ "/discord/" | relative_url }}">Discord</a>
-        <a class="page-link" href="{{ "/privacy.html" | relative_url }}"><span class="lang-zh">隱私權政策</span><span class="lang-en">Privacy Policy</span></a>
-        <a class="page-link lang-zh" data-lang-switch lang="en" href="{{ page.url | relative_url }}?lang=en">English</a>
-        <a class="page-link lang-en" data-lang-switch lang="zh-Hant" href="{{ page.url | relative_url }}">中文</a>
+        <a class="page-link" href="{{ "/privacy.html" | relative_url }}"><span class="lang-zh">隱私權政策</span><span class="lang-zh-hans">隐私政策</span><span class="lang-en">Privacy Policy</span><span class="lang-ja">プライバシーポリシー</span></a>
+        <details class="wn-lang">
+          <summary class="page-link"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.4 2.6 3.6 5.6 3.6 9s-1.2 6.4-3.6 9c-2.4-2.6-3.6-5.6-3.6-9s1.2-6.4 3.6-9z"/></svg><span>繁體中文</span></summary>
+          <ul>
+            <li><a data-lang-switch lang="zh-Hant" hreflang="zh-Hant" href="{{ page.url | relative_url }}?lang=zh-Hant">繁體中文</a></li>
+            <li><a data-lang-switch lang="zh-Hans" hreflang="zh-Hans" href="{{ page.url | relative_url }}?lang=zh-Hans">简体中文</a></li>
+            <li><a data-lang-switch lang="en" hreflang="en" href="{{ page.url | relative_url }}?lang=en">English</a></li>
+            <li><a data-lang-switch lang="ja" hreflang="ja" href="{{ page.url | relative_url }}?lang=ja">日本語</a></li>
+          </ul>
+        </details>
       </div>
     </nav>
   </div>

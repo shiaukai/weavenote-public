@@ -1,14 +1,19 @@
 title: WeaveNote
 description: 語音筆記 App：錄音後得到乾淨的逐字稿，支援 Android 與 iOS
 description_en: Voice notes with clean transcripts, for Android and iOS
+description_zh_hans: 语音笔记 App：录音后得到干净的逐字稿，支持 Android 和 iOS
+description_ja: 録音するだけで読みやすい文字起こしが手に入る音声ノートアプリ。Android・iOS 対応
 lang: zh-Hant
 locale: zh_TW
 markdown: kramdown
 theme: minima
 
 # Link previews (og:image) on every page: the home page banner.
+# langs: the languages a page has (see _includes/lang-select.html); pages in
+# 繁體中文 and English only, unless their front matter says otherwise.
 defaults:
   - scope:
       path: ""
     values:
       image: /assets/banner-zh.jpg
+      langs: [zh-Hant, en]

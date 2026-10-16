@@ -1,0 +1,114 @@
+{%- comment -%}
+  Which language a page shows. Included at the end of <head>, so it's
+  decided before any content is drawn and another language never flashes up.
+
+  Pages (layout: bilingual) hold each language in its own block, marked
+  class="lang-zh" (繁體中文), "lang-zh-hans" (简体中文), "lang-en" or
+  "lang-ja" (markdown="1" so kramdown still renders them). Which of these a
+  page has is its front matter `langs`: [zh-Hant, en] by default
+  (_config.yml), all four on the home page.
+
+  The language asked for, first match wins:
+  1. ?lang=zh-Hant / zh-Hans / en / ja in the URL; links within the site
+     then keep that ?lang=.
+  2. The one last picked in the language menu (_includes/header.html),
+     kept in localStorage.
+  3. The browser's languages, in order, by the App's rule (resolveAppLocale
+     in weavenote/lib/core/app_locale.dart): Chinese by script, else by
+     region (CN / SG / MY → 简体, other Chinese → 繁體), ja, en; none of
+     these → English.
+  Without JavaScript, and for search engine crawlers (Googlebot runs
+  JavaScript, with an English browser), it stays 繁體中文.
+
+  A page that doesn't have the language asked for shows its fallback, with a
+  one-line note on top (_layouts/bilingual.html): 简体中文 → 繁體中文,
+  日本語 → English (the English privacy policy is the authoritative one).
+{%- endcomment -%}
+<style>
+  html[data-lang]:not([data-lang="zh-Hant"]) .lang-zh,
+  html:not([data-lang="zh-Hans"]) .lang-zh-hans,
+  html:not([data-lang="en"]) .lang-en,
+  html:not([data-lang="ja"]) .lang-ja { display: none !important; }
+</style>
+<script>
+  (function () {
+    var KEY = 'weavenote.lang';
+    var FALLBACK = { 'zh-Hans': 'zh-Hant', ja: 'en' };
+    var TITLES = {
+      en: {{ page.title_en | jsonify }},
+      'zh-Hans': {{ page.title_zh_hans | jsonify }},
+      ja: {{ page.title_ja | jsonify }}
+    };
+    var DESCRIPTIONS = {
+      en: {{ site.description_en | jsonify }},
+      'zh-Hans': {{ site.description_zh_hans | jsonify }},
+      ja: {{ site.description_ja | jsonify }}
+    };
+    var have = {{ page.langs | jsonify }} || ['zh-Hant', 'en'];
+
+    // A language tag (zh-TW, zh_Hans_CN, ja-JP, en…) → one of the four, or null.
+    function siteLang(tag) {
+      var parts = String(tag || '').toLowerCase().split(/[-_]/);
+      if (parts[0] === 'zh') {
+        if (parts.indexOf('hans') > 0) return 'zh-Hans';
+        if (parts.indexOf('hant') > 0) return 'zh-Hant';
+        return /^(cn|sg|my)$/.test(parts[1]) ? 'zh-Hans' : 'zh-Hant';
+      }
+      return parts[0] === 'ja' ? 'ja' : parts[0] === 'en' ? 'en' : null;
+    }
+    function stored() {
+      try { return siteLang(localStorage.getItem(KEY)); } catch (e) { return null; }
+    }
+    function browser() {
+      if (/bot|crawler|spider/i.test(navigator.userAgent)) return 'zh-Hant';
+      var tags = navigator.languages && navigator.languages.length
+          ? navigator.languages : [navigator.language];
+      for (var i = 0; i < tags.length; i++) {
+        var l = siteLang(tags[i]);
+        if (l) return l;
+      }
+      return 'en';
+    }
+
+    var fromUrl = siteLang(new URLSearchParams(location.search).get('lang'));
+    var want = fromUrl || stored() || browser();
+    var show = have.indexOf(want) >= 0 ? want
+        : have.indexOf(FALLBACK[want]) >= 0 ? FALLBACK[want] : 'zh-Hant';
+
+    var html = document.documentElement;
+    html.setAttribute('data-lang', show);
+    html.setAttribute('data-want-lang', want);
+    if (show !== 'zh-Hant') {
+      html.lang = show;
+      document.title = TITLES[show] ? TITLES[show] + ' | WeaveNote'
+          : 'WeaveNote | ' + DESCRIPTIONS[show];
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var menu = document.querySelector('.wn-lang');
+      menu.querySelectorAll('a[data-lang-switch]').forEach(function (a) {
+        if (a.lang === want) {
+          a.setAttribute('aria-current', 'true');
+          menu.querySelector('summary span').textContent = a.textContent;
+        }
+        a.addEventListener('click', function () {
+          try { localStorage.setItem(KEY, a.lang); } catch (e) {}
+        });
+      });
+      document.addEventListener('click', function (e) {
+        if (!menu.contains(e.target)) menu.removeAttribute('open');
+      });
+
+      // Only a language from the URL needs carrying over; the menu, the
+      // stored pick and the browser's languages give the same answer on the
+      // next page.
+      if (!fromUrl) return;
+      document.querySelectorAll('a[href^="/"]').forEach(function (a) {
+        if (a.hasAttribute('data-lang-switch')) return;
+        var u = new URL(a.getAttribute('href'), location.origin);
+        u.searchParams.set('lang', fromUrl);
+        a.setAttribute('href', u.pathname + u.search + u.hash);
+      });
+    });
+  })();
+</script>
